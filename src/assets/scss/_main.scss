@@ -1,0 +1,15 @@
+@import "src/assets/scss/variable.scss";
+
+.form-control {
+background-color: transparent;
+border: 1px solid $black;
+box-shadow: none;
+width: 50%;
+
+}
+::placeholder {
+    color: rgba(10, 10, 10, 0.863) !important;
+    opacity: 0.7; 
+  }
+  
+  
