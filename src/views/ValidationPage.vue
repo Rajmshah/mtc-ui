@@ -21,7 +21,7 @@ export default {
 <style lang="scss">
 @import "src/assets/scss/main.scss";
 .main-background {
-  background-image: linear-gradient($pink, $blue), url("~@/assets/computer.jpg");
+  // background-image: linear-gradient($pink, $blue), url("~@/assets/computer.jpg");
   height: 100vh;
   position: fixed;
   width: 100%;
