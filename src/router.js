@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Login from "./views/Login.vue";
+import TeamDetail from "./views/TeamDetail.vue";
 
 Vue.use(Router);
 
@@ -16,6 +17,11 @@ export default new Router({
       path: "/login",
       name: "Login",
       component: Login
+    },
+    {
+      path: "/team-detail",
+      name: "Team Detail",
+      component: TeamDetail
     },
     {
       path: "/validationPage",
