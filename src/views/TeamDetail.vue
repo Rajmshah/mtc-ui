@@ -320,6 +320,7 @@ export default {
         if (data.data.data) {
           this.teamLogo = data.data.data[0];
           this.form.logo = this.teamLogo;
+          this.teamDetail.logo = this.teamLogo;
         }
       });
     },
