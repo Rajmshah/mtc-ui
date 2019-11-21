@@ -13,10 +13,15 @@ Vue.use(BootstrapVue);
 import Vuelidate from "vuelidate";
 Vue.use(Vuelidate);
 
-// vue-toster
-import Toaster from "v-toaster";
-Vue.use(Toaster);
-import "v-toaster/dist/v-toaster.css";
+// TOASTED
+import Toasted from "vue-toasted";
+
+Vue.use(Toasted, {
+  position: "top-right",
+  duration: 5000,
+  keepOnHover: true,
+  theme: "bubble"
+});
 
 // vue select
 import vSelect from "vue-select";
@@ -36,13 +41,40 @@ Vue.use(VueTheMask);
 import VueTelInput from "vue-tel-input";
 Vue.use(VueTelInput);
 
+import service from "./service/apiservice.js";
+
+Vue.filter("uploadpath", function(input, width, height, style) {
+  var other = "";
+  if (width && width !== "") {
+    other += "&width=" + width;
+  }
+  if (height && height !== "") {
+    other += "&height=" + height;
+  }
+  if (style && style !== "") {
+    other += "&style=" + style;
+  }
+  if (input) {
+    if (input.indexOf("https://") == -1) {
+      return service.readFileUrl + "?file=" + input + other;
+    } else {
+      return input;
+    }
+  }
+});
+
 // vue momemt
 Vue.use(require("vue-moment"));
 // import VueMoment from 'vue-moment'
-
 // Vue.use(VueMoment, {
 //     moment,
 // })
+
+//vue lodash
+import VueLodash from "vue-lodash";
+window._ = require("lodash");
+const options = { name: "lodash" };
+Vue.use(VueLodash, options);
 
 //FontAwesomeIcon
 import { library } from "@fortawesome/fontawesome-svg-core";

@@ -19,7 +19,7 @@ export default new Router({
       component: Login
     },
     {
-      path: "/team-detail",
+      path: "/team-detail/:token",
       name: "Team Detail",
       component: TeamDetail
     },
