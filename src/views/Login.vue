@@ -61,7 +61,6 @@
 
 <script>
 import service from "@/service/apiservice";
-import _ from "vue-lodash";
 export default {
   data() {
     return {
@@ -74,7 +73,7 @@ export default {
       e.preventDefault();
       if (this.form.username && this.form.password) {
         service.login(this.form, data => {
-          if (_.isEqual(data.code, 200)) {
+          if (this._.isEqual(data.code, 200)) {
             var len = data.data.accessToken.length - 1;
             var accessToken = data.data.accessToken[len].token;
             this.$router.push({
@@ -83,7 +82,7 @@ export default {
                 token: accessToken
               }
             });
-          } else if (_.isEqual(data.code, 403)) {
+          } else if (this._.isEqual(data.code, 403)) {
             this.checkError = true;
             this.message = data.msg;
           }

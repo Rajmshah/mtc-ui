@@ -14,9 +14,7 @@
             </div>
             <div class="my-5 mx-auto" v-if="addTeam">
               <b-form inline @submit="addTeamForm" name="addTeamDetail">
-                <label class="mr-sm-2 mb-2" for="inline-form-input-team-name"
-                  >Team Name:</label
-                >
+                <label class="mr-sm-2 mb-2" for="inline-form-input-team-name">Team Name:</label>
                 <b-input
                   id="inline-form-input-team-name"
                   class="mb-2 mr-4"
@@ -24,9 +22,7 @@
                   placeholder="Team Name"
                 ></b-input>
 
-                <label class="mr-sm-2 mb-2" for="inline-form-input-village"
-                  >Village:</label
-                >
+                <label class="mr-sm-2 mb-2" for="inline-form-input-village">Village:</label>
                 <b-input
                   id="inline-form-input-village"
                   class="mb-2 mr-4"
@@ -39,8 +35,7 @@
                   raised
                   @click="onClickFile"
                   variant="primary"
-                  >Upload Team Logo</b-button
-                >
+                >Upload Team Logo</b-button>
                 <input
                   type="file"
                   style="display:none"
@@ -49,24 +44,15 @@
                   @change="onFilePicked"
                 />
                 <div v-if="teamLogo" class="mr-4">
-                  <img
-                    :src="teamLogo | uploadpath"
-                    width="100"
-                    height="auto"
-                    alt=""
-                  />
+                  <img :src="teamLogo | uploadpath" width="100" height="auto" alt />
                 </div>
-                <b-button class="mb-2" type="submit" variant="success"
-                  >Submit</b-button
-                >
+                <b-button class="mb-2" type="submit" variant="success">Submit</b-button>
               </b-form>
               <div v-if="checkError">{{ message }}</div>
             </div>
             <div class="my-5 mx-auto" v-if="showTeam">
               <b-form inline>
-                <label class="mr-sm-2 mb-2" for="inline-form-custom-select-pref"
-                  >Team Name:</label
-                >
+                <label class="mr-sm-2 mb-2" for="inline-form-custom-select-pref">Team Name:</label>
                 <b-input
                   id="inline-form-input-name"
                   class="mb-2 mr-4"
@@ -74,9 +60,7 @@
                   placeholder="Team Name"
                 ></b-input>
 
-                <label class="mr-sm-2 mb-2" for="inline-form-custom-select-pref"
-                  >Village:</label
-                >
+                <label class="mr-sm-2 mb-2" for="inline-form-custom-select-pref">Village:</label>
                 <b-input
                   id="inline-form-input-name"
                   class="mb-2 mr-4"
@@ -89,14 +73,13 @@
                   for="inline-form-custom-select-pref"
                   v-if="teamDetail.logo"
                   >Team Logo:</label
-                > -->
+                >-->
                 <b-button
                   class="mr-sm-2 mb-2"
                   raised
                   @click="onClickFile"
                   variant="primary"
-                  >Upload Team Logo</b-button
-                >
+                >Upload Team Logo</b-button>
                 <input
                   type="file"
                   style="display:none"
@@ -113,22 +96,16 @@
                   v-if="teamDetail.logo"
                 />
 
-                <b-button
-                  class=" mr-4 mb-2"
-                  @click="updateTeam"
-                  variant="success"
-                  >Edit</b-button
-                >
-                <b-button class="mb-2" @click="goToPage" variant="warning"
-                  >Cancel</b-button
-                >
+                <b-button class="mr-4 mb-2" @click="updateTeam" variant="success">Edit</b-button>
+                <b-button class="mb-2" @click="goToPage" variant="warning">Cancel</b-button>
               </b-form>
               <div v-if="checkError">{{ message }}</div>
             </div>
-            <div class="text-center mb-5" v-if="showAddPlayers">
-              <b-button v-b-modal.modal-1 variant="primary"
-                >Add Team Member</b-button
-              >
+            <div
+              class="text-center mb-5"
+              v-if="showAddPlayers && totalPlayers != playerDetails.length"
+            >
+              <b-button v-b-modal.modal-1 variant="primary">Add Team Member</b-button>
               <memberRegistration :teamId="teamDetail._id"></memberRegistration>
             </div>
             <div class="table-responsive" v-if="showPlayers">
@@ -148,34 +125,20 @@
                     v-bind:data="{ id: id }"
                     v-on:event_child="deleteAndRefresh"
                   ></Delete>
-                  <tr
-                    v-for="(player, $index) in playerDetails"
-                    :key="player._id"
-                  >
+                  <tr v-for="(player, $index) in playerDetails" :key="player._id">
                     <td>{{ $index + 1 }}</td>
                     <td>{{ player.fullName }}</td>
                     <td>{{ player.age }}</td>
                     <td>{{ player.keyRole }}</td>
                     <td>
-                      <b-button
-                        class="mr-2"
-                        v-b-modal="'view' + player._id"
-                        variant="info"
-                        >View</b-button
-                      >
-                      <b-button
-                        class="mr-2"
-                        v-b-modal="'edit' + player._id"
-                        variant="primary"
-                        >Edit</b-button
-                      >
+                      <b-button class="mr-2" v-b-modal="'view' + player._id" variant="info">View</b-button>
+                      <b-button class="mr-2" v-b-modal="'edit' + player._id" variant="primary">Edit</b-button>
                       <b-button
                         variant="danger"
                         v-b-modal="player._id"
                         @click="passData(player._id)"
-                        >Delete</b-button
-                      >
-                      <div class="">
+                      >Delete</b-button>
+                      <div class>
                         <memberView :display="player"></memberView>
                         <memberEdit :edit="player"></memberEdit>
                       </div>
