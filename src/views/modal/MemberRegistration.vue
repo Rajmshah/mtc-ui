@@ -16,11 +16,7 @@
           label="First Name:"
           label-for="Firstname"
         >
-          <b-form-input
-            id="Firstname"
-            v-model="playerDetail.firstName"
-            required
-          ></b-form-input>
+          <b-form-input id="Firstname" v-model="playerDetail.firstName" required></b-form-input>
         </b-form-group>
         <b-form-group
           id="fieldset-horizontal"
@@ -29,10 +25,7 @@
           label="Middle Name:"
           label-for="middleName"
         >
-          <b-form-input
-            id="middleName"
-            v-model="playerDetail.middleName"
-          ></b-form-input>
+          <b-form-input id="middleName" v-model="playerDetail.middleName"></b-form-input>
         </b-form-group>
         <b-form-group
           id="fieldset-horizontal"
@@ -41,11 +34,7 @@
           label="Last Name:"
           label-for="lastName"
         >
-          <b-form-input
-            id="lastName"
-            v-model="playerDetail.surname"
-            required
-          ></b-form-input>
+          <b-form-input id="lastName" v-model="playerDetail.surname" required></b-form-input>
         </b-form-group>
         <b-form-group
           id="fieldset-horizontal"
@@ -69,11 +58,7 @@
           label="Email ID:"
           label-for="email"
         >
-          <b-form-input
-            type="email"
-            id="email"
-            v-model="playerDetail.email"
-          ></b-form-input>
+          <b-form-input type="email" id="email" v-model="playerDetail.email"></b-form-input>
         </b-form-group>
         <b-form-group
           id="fieldset-horizontal"
@@ -82,13 +67,7 @@
           label="Age:"
           label-for="age"
         >
-          <b-form-input
-            id="age"
-            type="tel"
-            maxlength="2"
-            v-model="playerDetail.age"
-            required
-          ></b-form-input>
+          <b-form-input id="age" type="tel" maxlength="2" v-model="playerDetail.age" required></b-form-input>
         </b-form-group>
         <b-form-group
           id="fieldset-horizontal"
@@ -97,12 +76,7 @@
           label="Key Role:"
           label-for="key-role"
         >
-          <b-form-select
-            id="key-role"
-            :options="keyRole"
-            v-model="playerDetail.keyRole"
-            required
-          ></b-form-select>
+          <b-form-select id="key-role" :options="keyRole" v-model="playerDetail.keyRole" required></b-form-select>
         </b-form-group>
         <b-form-group
           id="fieldset-horizontal"
@@ -146,14 +120,8 @@
             required
           ></b-form-select>
         </b-form-group>
-        <b-form-group
-          id="exampleInputGroup1"
-          label-for="exampleInput1"
-          required
-        >
-          <b-button class="mt-3" raised @click="onClickFile" variant="primary"
-            >Upload Player Pic</b-button
-          >
+        <b-form-group id="exampleInputGroup1" label-for="exampleInput1" required>
+          <b-button class="mt-3" raised @click="onClickFile" variant="primary">Upload Player Pic</b-button>
           <input
             type="file"
             style="display:none"
@@ -163,9 +131,10 @@
           />
           <div>
             <span>
-              <font color="red" class="note small"
-                >Please Upload Square Shape Images and Size less than 1MB</font
-              >
+              <font
+                color="red"
+                class="note small"
+              >Please Upload Square Shape Images and Size less than 1MB</font>
             </span>
           </div>
         </b-form-group>
@@ -274,24 +243,33 @@ export default {
     },
     onFilePicked(event) {
       const files = event.target.files;
-      let filename = files[0].name;
-      if (filename.lastIndexOf(".") <= 0) {
-        return alert("Please Add Valid File!");
-      }
-      const fileReader = new FileReader();
-      fileReader.addEventListener("load", () => {
-        this.imageUrl = fileReader.result;
-      });
-      fileReader.readAsDataURL(files[0]);
-      this.image = files[0];
-      const formData = new FormData();
-      formData.append("file", this.image);
-      service.upload(formData, data => {
-        if (data.data.data) {
-          this.mainImage = data.data.data[0];
-          this.playerDetail.photograph = this.mainImage;
+      if (files && files.length > 0 && files[0].name) {
+        var filename = files[0].name;
+        console.log("files", files);
+        if (filename.lastIndexOf(".") <= 0) {
+          this.$toasted.error("Please Add Valid File!");
+        } else if (files[0].size > 1024 * 1024) {
+          this.$toasted.error("Image size is greater than 1 MB");
+        } else {
+          var fileReader = new FileReader();
+          fileReader.addEventListener("load", () => {
+            this.imageUrl = fileReader.result;
+          });
+          fileReader.readAsDataURL(files[0]);
+          this.image = files[0];
+          var formData = new FormData();
+          formData.append("file", this.image);
+          service.upload(formData, data => {
+            if (data.data.data) {
+              this.$toasted.success("Image Uploaded Successfully");
+              this.mainImage = data.data.data[0];
+              this.playerDetail.photograph = this.mainImage;
+            }
+          });
         }
-      });
+      } else {
+        this.$toasted.error("Select Image");
+      }
     }
   }
 };

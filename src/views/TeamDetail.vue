@@ -93,7 +93,6 @@
                   width="100"
                   height="auto"
                   alt
-                  v-if="teamDetail.logo"
                 />
 
                 <b-button class="mr-4 mb-2" @click="updateTeam" variant="success">Edit</b-button>
@@ -296,6 +295,7 @@ export default {
         service.updateTeam(this.teamDetail._id, team, updatedTeam => {
           if (updatedTeam.data.nModified == 1) {
             this.checkError = false;
+            this.$router.go(0);
             this.$toasted.show("Updated Team Details Successfully");
           } else {
             this.checkError = true;
@@ -321,35 +321,33 @@ export default {
     },
     onFilePicked(event) {
       var files = event.target.files;
-      var filename = files[0].name;
-      console.log("files", files);
-      if (filename.lastIndexOf(".") <= 0) {
-        this.$toasted.error("Please Add Valid File!");
-      } else if (files[0].size > 1024 * 1024) {
-        this.$toasted.error("Image size is greater than 1 MB");
+      if (files && files.length > 0 && files[0].name) {
+        var filename = files[0].name;
+        console.log("files", files);
+        if (filename.lastIndexOf(".") <= 0) {
+          this.$toasted.error("Please Add Valid File!");
+        } else if (files[0].size > 1024 * 1024) {
+          this.$toasted.error("Image size is greater than 1 MB");
+        } else {
+          var fileReader = new FileReader();
+          fileReader.addEventListener("load", () => {
+            this.imageUrl = fileReader.result;
+          });
+          fileReader.readAsDataURL(files[0]);
+          this.image = files[0];
+          var formData = new FormData();
+          formData.append("file", this.image);
+          service.upload(formData, data => {
+            if (data.data.data) {
+              this.$toasted.success("Image Uploaded Successfully");
+              this.teamLogo = data.data.data[0];
+              this.form.logo = this.teamLogo;
+              this.teamDetail.logo = this.teamLogo;
+            }
+          });
+        }
       } else {
-        var fileReader = new FileReader();
-        fileReader.addEventListener("load", () => {
-          this.imageUrl = fileReader.result;
-        });
-        fileReader.readAsDataURL(files[0]);
-        this.image = files[0];
-        var formData = new FormData();
-        formData.append("file", this.image);
-        service.upload(formData, data => {
-          console.log("data", data);
-          console.log("data 1", data.data);
-          if (data.data.data) {
-            console.log("data 2", data.data.data);
-            this.$toasted.success("Image Uploaded");
-            this.teamLogo = data.data.data[0];
-            this.form.logo = this.teamLogo;
-            this.teamDetail.logo = this.teamLogo;
-            console.log("data 3", this.teamLogo);
-            console.log("data 4", this.form.logo);
-            console.log("data 5", this.teamDetail.logo);
-          }
-        });
+        this.$toasted.error("Select Image");
       }
     },
     goToPage() {

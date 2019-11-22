@@ -7,9 +7,9 @@ const adminUrl = "http://api.mtcmarudharcup.com/";
 // const adminUrl = "http://localhost:3000/";
 
 export default {
-  // uploadUrl: "http://localhost:1330/api/upload",
+  // uploadUrl: "http://localhost:1330/api/upload/",
   // readFileUrl: "http://localhost:1330/api/upload/readFile",
-  uploadUrl: "http://fileupload.mtcmarudharcup.com/api/upload",
+  uploadUrl: "http://fileupload.mtcmarudharcup.com/api/upload/",
   readFileUrl: "http://fileupload.mtcmarudharcup.com/api/upload/readFile",
   login: (data, callback) =>
     axios
