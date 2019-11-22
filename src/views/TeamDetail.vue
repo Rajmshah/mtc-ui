@@ -213,6 +213,15 @@ export default {
         if (data.data) {
           this.form = data.data;
           this.teamDetail = data.data;
+          if (data.data.village) {
+            this.teamDetail.village = data.data.village;
+          }
+          if (data.data.name) {
+            this.teamDetail.name = data.data.name;
+          }
+          if (data.data.logo) {
+            this.teamDetail.logo = data.data.logo;
+          }
           this.addTeam = false;
           this.showTeam = true;
           this.showAddPlayers = true;
@@ -268,7 +277,15 @@ export default {
     getOneTeam(teamId) {
       service.getOneTeam(teamId, data => {
         if (data.data) {
-          this.teamDetail = data.data;
+          if (data.data.village) {
+            this.teamDetail.village = data.data.village;
+          }
+          if (data.data.name) {
+            this.teamDetail.name = data.data.name;
+          }
+          if (data.data.logo) {
+            this.teamDetail.logo = data.data.logo;
+          }
         }
       });
     },
@@ -303,26 +320,37 @@ export default {
       this.$refs.fileInput.click();
     },
     onFilePicked(event) {
-      const files = event.target.files;
-      let filename = files[0].name;
+      var files = event.target.files;
+      var filename = files[0].name;
+      console.log("files", files);
       if (filename.lastIndexOf(".") <= 0) {
-        return alert("Please Add Valid File!");
+        this.$toasted.error("Please Add Valid File!");
+      } else if (files[0].size > 1024 * 1024) {
+        this.$toasted.error("Image size is greater than 1 MB");
+      } else {
+        var fileReader = new FileReader();
+        fileReader.addEventListener("load", () => {
+          this.imageUrl = fileReader.result;
+        });
+        fileReader.readAsDataURL(files[0]);
+        this.image = files[0];
+        var formData = new FormData();
+        formData.append("file", this.image);
+        service.upload(formData, data => {
+          console.log("data", data);
+          console.log("data 1", data.data);
+          if (data.data.data) {
+            console.log("data 2", data.data.data);
+            this.$toasted.success("Image Uploaded");
+            this.teamLogo = data.data.data[0];
+            this.form.logo = this.teamLogo;
+            this.teamDetail.logo = this.teamLogo;
+            console.log("data 3", this.teamLogo);
+            console.log("data 4", this.form.logo);
+            console.log("data 5", this.teamDetail.logo);
+          }
+        });
       }
-      const fileReader = new FileReader();
-      fileReader.addEventListener("load", () => {
-        this.imageUrl = fileReader.result;
-      });
-      fileReader.readAsDataURL(files[0]);
-      this.image = files[0];
-      const formData = new FormData();
-      formData.append("file", this.image);
-      service.upload(formData, data => {
-        if (data.data.data) {
-          this.teamLogo = data.data.data[0];
-          this.form.logo = this.teamLogo;
-          this.teamDetail.logo = this.teamLogo;
-        }
-      });
     },
     goToPage() {
       this.checkTeam(this.form.user);
