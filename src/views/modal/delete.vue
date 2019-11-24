@@ -32,7 +32,7 @@ export default {
       this.modal = this.id;
       const obj = {};
       obj._id = this.data.id;
-      this.$bvModal.hide(this.data.id);
+      this.$bvModal.hide("delete" + this.data.id);
       this.$emit("event_child", obj);
 
       // this.$notify({
