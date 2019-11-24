@@ -1,18 +1,14 @@
 <template>
   <div>
     <b-modal
-      :id="data.id"
+      :id="'delete'+data.id"
       ref="deleteButton"
       title="Are sure you want to delete?"
       hide-footer
       no-stacking
     >
-      <b-button @click="close()" variant="outline-danger" class="mr-3"
-        >Delete</b-button
-      >
-      <b-button variant="outline-primary" @click="$bvModal.hide(data.id)"
-        >Cancel</b-button
-      >
+      <b-button @click="close()" variant="outline-danger" class="mr-3">Delete</b-button>
+      <b-button variant="outline-primary" @click="$bvModal.hide('delete'+data.id)">Cancel</b-button>
     </b-modal>
   </div>
 </template>
@@ -76,5 +72,17 @@ export default {
   flex: 1 1 auto;
   padding: 1rem;
   text-align: center;
+}
+.btn-outline-primary:focus,
+.btn-outline-primary.focus,
+.btn-outline-primary:not(:disabled):not(.disabled):active:focus,
+.btn-outline-primary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-outline-primary.dropdown-toggle:focus,
+.btn-outline-danger:focus,
+.btn-outline-danger.focus,
+.btn-outline-danger:not(:disabled):not(.disabled):active:focus,
+.btn-outline-danger:not(:disabled):not(.disabled).active:focus,
+.show > .btn-outline-danger.dropdown-toggle:focus {
+  box-shadow: unset;
 }
 </style>

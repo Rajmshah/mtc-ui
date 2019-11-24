@@ -16,11 +16,7 @@
           label="First Name:"
           label-for="Firstname"
         >
-          <b-form-input
-            id="Firstname"
-            readonly
-            v-model="playerDetail.firstName"
-          ></b-form-input>
+          <b-form-input id="Firstname" readonly v-model="playerDetail.firstName"></b-form-input>
         </b-form-group>
         <b-form-group
           id="fieldset-horizontal"
@@ -29,11 +25,7 @@
           label="Middle Name:"
           label-for="middleName"
         >
-          <b-form-input
-            id="middleName"
-            readonly
-            v-model="playerDetail.middleName"
-          ></b-form-input>
+          <b-form-input id="middleName" readonly v-model="playerDetail.middleName"></b-form-input>
         </b-form-group>
         <b-form-group
           id="fieldset-horizontal"
@@ -42,11 +34,7 @@
           label="Last Name:"
           label-for="lastName"
         >
-          <b-form-input
-            id="lastName"
-            readonly
-            v-model="playerDetail.surname"
-          ></b-form-input>
+          <b-form-input id="lastName" readonly v-model="playerDetail.surname"></b-form-input>
         </b-form-group>
         <b-form-group
           id="fieldset-horizontal"
@@ -70,12 +58,7 @@
           label="Email ID:"
           label-for="email"
         >
-          <b-form-input
-            type="email"
-            id="email"
-            readonly
-            v-model="playerDetail.email"
-          ></b-form-input>
+          <b-form-input type="email" id="email" readonly v-model="playerDetail.email"></b-form-input>
         </b-form-group>
         <b-form-group
           id="fieldset-horizontal"
@@ -84,13 +67,7 @@
           label="Age:"
           label-for="age"
         >
-          <b-form-input
-            id="age"
-            type="tel"
-            maxlength="2"
-            readonly
-            v-model="playerDetail.age"
-          ></b-form-input>
+          <b-form-input id="age" type="tel" maxlength="2" readonly v-model="playerDetail.age"></b-form-input>
         </b-form-group>
         <b-form-group
           id="fieldset-horizontal"
@@ -99,12 +76,7 @@
           label="Key Role:"
           label-for="key-role"
         >
-          <b-form-select
-            id="key-role"
-            :options="keyRole"
-            disabled
-            v-model="playerDetail.keyRole"
-          ></b-form-select>
+          <b-form-select id="key-role" :options="keyRole" disabled v-model="playerDetail.keyRole"></b-form-select>
         </b-form-group>
         <b-form-group
           id="fieldset-horizontal"
@@ -149,11 +121,7 @@
           ></b-form-select>
         </b-form-group>
         <b-form-group v-if="playerDetail.photograph">
-          <img
-            :src="playerDetail.photograph | uploadpath"
-            width="150"
-            height="auto"
-          />
+          <img :src="playerDetail.photograph | uploadpath" width="150" height="auto" />
         </b-form-group>
       </form>
     </b-modal>

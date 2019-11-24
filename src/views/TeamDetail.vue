@@ -12,8 +12,8 @@
             <div class="text-center">
               <span class="head-title">Team Details</span>
             </div>
-            <div class="my-5 mx-auto" v-if="addTeam">
-              <b-form inline @submit="addTeamForm" name="addTeamDetail">
+            <div class="my-5 mx-auto mobile-space" v-if="addTeam">
+              <b-form inline class="save-team" @submit="addTeamForm" name="addTeamDetail">
                 <label class="mr-sm-2 mb-2" for="inline-form-input-team-name">Team Name:</label>
                 <b-input
                   id="inline-form-input-team-name"
@@ -51,7 +51,7 @@
               <div v-if="checkError">{{ message }}</div>
             </div>
             <div class="my-5 mx-auto" v-if="showTeam">
-              <b-form inline>
+              <b-form inline class="edit-team">
                 <label class="mr-sm-2 mb-2" for="inline-form-custom-select-pref">Team Name:</label>
                 <b-input
                   id="inline-form-input-name"
@@ -74,29 +74,30 @@
                   v-if="teamDetail.logo"
                   >Team Logo:</label
                 >-->
-                <b-button
-                  class="mr-sm-2 mb-2"
-                  raised
-                  @click="onClickFile"
-                  variant="primary"
-                >Upload Team Logo</b-button>
-                <input
-                  type="file"
-                  style="display:none"
-                  ref="fileInput"
-                  accept="image/*"
-                  @change="onFilePicked"
-                />
-                <img
-                  class="img-fluid mr-4"
-                  :src="teamDetail.logo | uploadpath"
-                  width="100"
-                  height="auto"
-                  alt
-                />
-
-                <b-button class="mr-4 mb-2" @click="updateTeam" variant="success">Edit</b-button>
-                <b-button class="mb-2" @click="goToPage" variant="warning">Cancel</b-button>
+                <div class="mobile-spacing">
+                  <b-button
+                    class="mr-2 mb-2"
+                    raised
+                    @click="onClickFile"
+                    variant="primary"
+                  >Upload Team Logo</b-button>
+                  <input
+                    type="file"
+                    style="display:none"
+                    ref="fileInput"
+                    accept="image/*"
+                    @change="onFilePicked"
+                  />
+                  <img
+                    class="img-fluid mr-4"
+                    :src="teamDetail.logo | uploadpath"
+                    width="100"
+                    height="auto"
+                    alt
+                  />
+                  <b-button class="mr-4 mb-2 mobile-save" @click="updateTeam" variant="success">Save</b-button>
+                  <b-button class="mb-2 mobile-cancel" @click="goToPage" variant="warning">Cancel</b-button>
+                </div>
               </b-form>
               <div v-if="checkError">{{ message }}</div>
             </div>
@@ -107,40 +108,49 @@
               <b-button v-b-modal.modal-1 variant="primary">Add Team Member</b-button>
               <memberRegistration :teamId="teamDetail._id"></memberRegistration>
             </div>
-            <div class="table-responsive" v-if="showPlayers">
-              <table class="table table-bordered">
+            <div class="table-responsive text-nowrap" v-if="showPlayers">
+              <table class="table table-hover">
                 <thead>
                   <tr>
                     <th>No.</th>
                     <th>Name</th>
                     <th>Age</th>
                     <th>Role</th>
-                    <th>Action</th>
+                    <th colspan="3">Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <Delete
-                    class="text-center"
-                    v-bind:data="{ id: id }"
-                    v-on:event_child="deleteAndRefresh"
-                  ></Delete>
+                  <div class>
+                    <deleteView
+                      class="text-center"
+                      v-bind:data="{ id: id }"
+                      v-on:event_child="deleteAndRefresh"
+                    ></deleteView>
+                  </div>
                   <tr v-for="(player, $index) in playerDetails" :key="player._id">
                     <td>{{ $index + 1 }}</td>
                     <td>{{ player.fullName }}</td>
                     <td>{{ player.age }}</td>
                     <td>{{ player.keyRole }}</td>
                     <td>
-                      <b-button class="mr-2" v-b-modal="'view' + player._id" variant="info">View</b-button>
-                      <b-button class="mr-2" v-b-modal="'edit' + player._id" variant="primary">Edit</b-button>
-                      <b-button
-                        variant="danger"
-                        v-b-modal="player._id"
-                        @click="passData(player._id)"
-                      >Delete</b-button>
+                      <b-button v-b-modal="'view' + player._id" variant="info">View</b-button>
                       <div class>
                         <memberView :display="player"></memberView>
+                      </div>
+                    </td>
+                    <td>
+                      <b-button v-b-modal="'edit' + player._id" variant="primary">Edit</b-button>
+                      <div class>
                         <memberEdit :edit="player"></memberEdit>
                       </div>
+                    </td>
+                    <td>
+                      <b-button variant="danger" v-b-modal="'delete' + player._id">Delete</b-button>
+                      <deleteView
+                        class="text-center"
+                        :data="{id:player._id}"
+                        v-on:event_child="deleteAndRefresh"
+                      ></deleteView>
                     </td>
                   </tr>
                 </tbody>
@@ -155,11 +165,12 @@
 
 <script>
 import service from "@/service/apiservice";
-import Delete from "@/views/modal/delete.vue";
+import deleteView from "@/views/modal/delete.vue";
 import memberView from "@/views/modal/MemberView.vue";
 import memberEdit from "@/views/modal/MemberEdit.vue";
 import memberRegistration from "@/views/modal/MemberRegistration.vue";
 export default {
+  components: { memberRegistration, memberView, memberEdit, deleteView },
   data() {
     return {
       user: "",
@@ -180,7 +191,6 @@ export default {
       checkError: false
     };
   },
-  components: { memberRegistration, memberView, memberEdit, Delete },
   created() {
     this.getPlayerCount();
     this.checkUser();
@@ -366,8 +376,121 @@ export default {
     font-size: 2rem;
     font-weight: bold;
   }
-  .form-inline .form-control {
+  .save-team .form-inline .form-control {
     width: 175px;
+  }
+  .form-inline .form-control {
+    width: 160px;
+  }
+  .table-fixed {
+    width: 100%;
+    background-color: #f3f3f3;
+    tbody {
+      height: 200px;
+      overflow-y: auto;
+      width: 100%;
+    }
+    thead,
+    tbody,
+    tr,
+    td,
+    th {
+      display: block;
+    }
+    tbody {
+      td {
+        float: left;
+      }
+    }
+    thead {
+      tr {
+        th {
+          float: left;
+          background-color: #f39c12;
+          border-color: #e67e22;
+        }
+      }
+    }
+  }
+  .btn-primary:focus,
+  .btn-primary.focus,
+  .btn-primary:not(:disabled):not(.disabled):active:focus,
+  .btn-primary:not(:disabled):not(.disabled).active:focus,
+  .show > .btn-primary.dropdown-toggle:focus,
+  .btn-success:focus,
+  .btn-success.focus,
+  .btn-success:not(:disabled):not(.disabled):active:focus,
+  .btn-success:not(:disabled):not(.disabled).active:focus,
+  .show > .btn-success.dropdown-toggle:focus,
+  .btn-info:focus,
+  .btn-info.focus,
+  .btn-info:not(:disabled):not(.disabled):active:focus,
+  .btn-info:not(:disabled):not(.disabled).active:focus,
+  .show > .btn-info.dropdown-toggle:focus,
+  .btn-warning:focus,
+  .btn-warning.focus,
+  .btn-warning:not(:disabled):not(.disabled):active:focus,
+  .btn-warning:not(:disabled):not(.disabled).active:focus,
+  .show > .btn-warning.dropdown-toggle:focus,
+  .btn-danger:focus,
+  .btn-danger.focus,
+  .btn-danger:not(:disabled):not(.disabled):active:focus,
+  .btn-danger:not(:disabled):not(.disabled).active:focus,
+  .show > .btn-danger.dropdown-toggle:focus {
+    box-shadow: unset;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .team-detail .form-inline .form-control {
+    width: 190px;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .team-detail .head-title {
+    font-size: 1.5rem;
+  }
+  .team-detail .save-team .form-inline .form-control,
+  .team-detail .form-inline .form-control {
+    width: 100%;
+  }
+  .form-inline .form-control {
+    margin-bottom: 1.25rem !important;
+  }
+  .my-5.mobile-space {
+    margin-top: 1.75rem !important;
+    margin-bottom: 0 !important;
+  }
+  .mobile-spacing {
+    padding: 0 2rem;
+  }
+  .mobile-save,
+  .mobile-cancel {
+    margin-top: 1rem;
+  }
+  .edit-team {
+    .form-control {
+      margin-right: 0 !important;
+    }
+  }
+}
+@media only screen and (max-width: 492px) {
+  .mobile-spacing {
+    padding: 0;
+  }
+  .mobile-save,
+  .mobile-cancel {
+    margin-top: 1rem;
+  }
+  .img-fluid.mr-4 {
+    margin-right: 0 !important;
+  }
+}
+@media only screen and (max-width: 411px) {
+  .mobile-spacing {
+    img {
+      width: 100%;
+      margin: 1rem 0;
+    }
   }
 }
 </style>
