@@ -217,7 +217,7 @@ export default {
         this.playerDetail.battingType &&
         this.playerDetail.bowlingType &&
         this.playerDetail.firstName &&
-        this.playerDetail.isWicketkeeper &&
+        (this.playerDetail.isWicketkeeper == false || this.playerDetail.isWicketkeeper == true) &&
         this.playerDetail.keyRole &&
         this.playerDetail.mobile &&
         this.playerDetail.surname
