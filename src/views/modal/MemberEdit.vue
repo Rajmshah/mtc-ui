@@ -134,7 +134,7 @@
               <font
                 color="red"
                 class="note small"
-              >Please Upload Square Shape Images and Size less than 1MB</font>
+              >Please Upload Image of Size less than 1MB</font>
             </span>
           </div>
         </b-form-group>
