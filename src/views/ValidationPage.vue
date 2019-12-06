@@ -2,18 +2,15 @@
   <div>
     <div class="main-background">
       <!--  -->
-      <Header></Header>
       <AllForms></AllForms>
       <!--  -->
     </div>
   </div>
 </template>
 <script>
-import Header from "@/components/Header.vue";
 import AllForms from "@/components/AllForms.vue";
 export default {
   components: {
-    Header,
     AllForms
   }
 };

@@ -79,17 +79,28 @@ Vue.use(VueLodash, options);
 //FontAwesomeIcon
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faCoffee } from "@fortawesome/free-solid-svg-icons";
+import {
+  faFacebookF,
+  faYoutube,
+  faInstagram
+} from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { faStar, faCalendar } from "@fortawesome/free-regular-svg-icons"; //far
+import {
+  faStar,
+  faCalendar,
+  faCopyright
+} from "@fortawesome/free-regular-svg-icons"; //far
 import {
   faChevronRight,
   faChevronLeft,
-  faTrashAlt
+  faTrashAlt,
+  faEnvelope
 } from "@fortawesome/free-solid-svg-icons"; //fas
 
 library.add(faCoffee);
-library.add(faStar, faCalendar); //far
-library.add(faChevronRight, faChevronLeft, faTrashAlt); //fas
+library.add(faFacebookF, faYoutube, faInstagram); //fab
+library.add(faStar, faCalendar, faCopyright); //far
+library.add(faChevronRight, faChevronLeft, faTrashAlt, faEnvelope); //fas
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 

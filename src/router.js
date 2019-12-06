@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
+import Home from "./views/Home.vue";
 import Login from "./views/Login.vue";
 import TeamDetail from "./views/TeamDetail.vue";
 
@@ -11,7 +12,8 @@ export default new Router({
   routes: [
     {
       path: "/",
-      redirect: "/login"
+      name: "Home",
+      component: Home
     },
     {
       path: "/login",

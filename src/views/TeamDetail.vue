@@ -1,82 +1,39 @@
 <template>
-  <div class="team-detail my-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-auto">
-          <div class="card p-5">
-            <div class="text-right">
-              <router-link to="/login">
-                <b-button variant="danger">Logout</b-button>
-              </router-link>
-            </div>
-            <div class="text-center">
-              <span class="head-title">Team Details</span>
-            </div>
-            <div class="my-5 mx-auto mobile-space" v-if="addTeam">
-              <b-form inline class="save-team" @submit="addTeamForm" name="addTeamDetail">
-                <label class="mr-sm-2 mb-2" for="inline-form-input-team-name">Team Name:</label>
-                <b-input
-                  id="inline-form-input-team-name"
-                  class="mb-2 mr-4"
-                  v-model="form.name"
-                  placeholder="Team Name"
-                ></b-input>
+  <div class>
+    <headerSection></headerSection>
+    <div class="team-detail my-5 text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-auto">
+            <div class="card p-5">
+              <div class="text-right">
+                <router-link to="/login">
+                  <b-button variant="danger">Logout</b-button>
+                </router-link>
+              </div>
+              <div class="text-center">
+                <span class="head-title">Team Details</span>
+              </div>
+              <div class="my-5 mx-auto mobile-space" v-if="addTeam">
+                <b-form inline class="save-team" @submit="addTeamForm" name="addTeamDetail">
+                  <label class="mr-sm-2 mb-2" for="inline-form-input-team-name">Team Name:</label>
+                  <b-input
+                    id="inline-form-input-team-name"
+                    class="mb-2 mr-4"
+                    v-model="form.name"
+                    placeholder="Team Name"
+                  ></b-input>
 
-                <label class="mr-sm-2 mb-2" for="inline-form-input-village">Village:</label>
-                <b-input
-                  id="inline-form-input-village"
-                  class="mb-2 mr-4"
-                  v-model="form.village"
-                  placeholder="Village"
-                ></b-input>
+                  <label class="mr-sm-2 mb-2" for="inline-form-input-village">Village:</label>
+                  <b-input
+                    id="inline-form-input-village"
+                    class="mb-2 mr-4"
+                    v-model="form.village"
+                    placeholder="Village"
+                  ></b-input>
 
-                <b-button
-                  class="mr-4 mb-2"
-                  raised
-                  @click="onClickFile"
-                  variant="primary"
-                >Upload Team Logo</b-button>
-                <input
-                  type="file"
-                  style="display:none"
-                  ref="fileInput"
-                  accept="image/*"
-                  @change="onFilePicked"
-                />
-                <div v-if="teamLogo" class="mr-4">
-                  <img :src="teamLogo | uploadpath" width="100" height="auto" alt />
-                </div>
-                <b-button class="mb-2" type="submit" variant="success">Submit</b-button>
-              </b-form>
-              <div v-if="checkError">{{ message }}</div>
-            </div>
-            <div class="my-5 mx-auto" v-if="showTeam">
-              <b-form inline class="edit-team">
-                <label class="mr-sm-2 mb-2" for="inline-form-custom-select-pref">Team Name:</label>
-                <b-input
-                  id="inline-form-input-name"
-                  class="mb-2 mr-4"
-                  v-model="teamDetail.name"
-                  placeholder="Team Name"
-                ></b-input>
-
-                <label class="mr-sm-2 mb-2" for="inline-form-custom-select-pref">Village:</label>
-                <b-input
-                  id="inline-form-input-name"
-                  class="mb-2 mr-4"
-                  v-model="teamDetail.village"
-                  placeholder="Village"
-                ></b-input>
-
-                <!-- <label
-                  class="mr-sm-2 mb-2"
-                  for="inline-form-custom-select-pref"
-                  v-if="teamDetail.logo"
-                  >Team Logo:</label
-                >-->
-                <div class="mobile-spacing">
                   <b-button
-                    class="mr-2 mb-2"
+                    class="mr-4 mb-2"
                     raised
                     @click="onClickFile"
                     variant="primary"
@@ -88,78 +45,129 @@
                     accept="image/*"
                     @change="onFilePicked"
                   />
-                  <img
-                    class="img-fluid mr-4"
-                    :src="teamDetail.logo | uploadpath"
-                    width="100"
-                    height="auto"
-                    alt
-                  />
-                  <b-button class="mr-4 mb-2 mobile-save" @click="updateTeam" variant="success">Save</b-button>
-                  <b-button class="mb-2 mobile-cancel" @click="goToPage" variant="warning">Cancel</b-button>
-                </div>
-              </b-form>
-              <div v-if="checkError">{{ message }}</div>
-            </div>
-            <div
-              class="text-center mb-5"
-              v-if="showAddPlayers && totalPlayers != playerDetails.length"
-            >
-              <b-button v-b-modal.modal-1 variant="primary">Add Team Member</b-button>
-              <memberRegistration :teamId="teamDetail._id"></memberRegistration>
-            </div>
-            <div class="table-responsive text-nowrap" v-if="showPlayers">
-              <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th>No.</th>
-                    <th>Name</th>
-                    <th>Age</th>
-                    <th>Role</th>
-                    <th colspan="3">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <div class>
-                    <deleteView
-                      class="text-center"
-                      v-bind:data="{ id: id }"
-                      v-on:event_child="deleteAndRefresh"
-                    ></deleteView>
+                  <div v-if="teamLogo" class="mr-4">
+                    <img :src="teamLogo | uploadpath" width="100" height="auto" alt />
                   </div>
-                  <tr v-for="(player, $index) in playerDetails" :key="player._id">
-                    <td>{{ $index + 1 }}</td>
-                    <td>{{ player.fullName }}</td>
-                    <td>{{ player.age }}</td>
-                    <td>{{ player.keyRole }}</td>
-                    <td>
-                      <b-button v-b-modal="'view' + player._id" variant="info">View</b-button>
-                      <div class>
-                        <memberView :display="player"></memberView>
-                      </div>
-                    </td>
-                    <td>
-                      <b-button v-b-modal="'edit' + player._id" variant="primary">Edit</b-button>
-                      <div class>
-                        <memberEdit :edit="player"></memberEdit>
-                      </div>
-                    </td>
-                    <td>
-                      <b-button variant="danger" v-b-modal="'delete' + player._id">Delete</b-button>
+                  <b-button class="mb-2" type="submit" variant="success">Submit</b-button>
+                </b-form>
+                <div v-if="checkError">{{ message }}</div>
+              </div>
+              <div class="my-5 mx-auto" v-if="showTeam">
+                <b-form inline class="edit-team">
+                  <label class="mr-sm-2 mb-2" for="inline-form-custom-select-pref">Team Name:</label>
+                  <b-input
+                    id="inline-form-input-name"
+                    class="mb-2 mr-4"
+                    v-model="teamDetail.name"
+                    placeholder="Team Name"
+                  ></b-input>
+
+                  <label class="mr-sm-2 mb-2" for="inline-form-custom-select-pref">Village:</label>
+                  <b-input
+                    id="inline-form-input-name"
+                    class="mb-2 mr-4"
+                    v-model="teamDetail.village"
+                    placeholder="Village"
+                  ></b-input>
+
+                  <!-- <label
+                  class="mr-sm-2 mb-2"
+                  for="inline-form-custom-select-pref"
+                  v-if="teamDetail.logo"
+                  >Team Logo:</label
+                  >-->
+                  <div class="mobile-spacing">
+                    <b-button
+                      class="mr-2 mb-2"
+                      raised
+                      @click="onClickFile"
+                      variant="primary"
+                    >Upload Team Logo</b-button>
+                    <input
+                      type="file"
+                      style="display:none"
+                      ref="fileInput"
+                      accept="image/*"
+                      @change="onFilePicked"
+                    />
+                    <img
+                      class="img-fluid mr-4"
+                      :src="teamDetail.logo | uploadpath"
+                      width="100"
+                      height="auto"
+                      alt
+                    />
+                    <b-button
+                      class="mr-4 mb-2 mobile-save"
+                      @click="updateTeam"
+                      variant="success"
+                    >Save</b-button>
+                    <b-button class="mb-2 mobile-cancel" @click="goToPage" variant="warning">Cancel</b-button>
+                  </div>
+                </b-form>
+                <div v-if="checkError">{{ message }}</div>
+              </div>
+              <div
+                class="text-center mb-5"
+                v-if="showAddPlayers && totalPlayers != playerDetails.length"
+              >
+                <b-button v-b-modal.modal-1 variant="primary">Add Team Member</b-button>
+                <memberRegistration :teamId="teamDetail._id"></memberRegistration>
+              </div>
+              <div class="table-responsive text-nowrap" v-if="showPlayers">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>No.</th>
+                      <th>Name</th>
+                      <th>Age</th>
+                      <th>Role</th>
+                      <th colspan="3">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <div class>
                       <deleteView
                         class="text-center"
-                        :data="{id:player._id}"
+                        v-bind:data="{ id: id }"
                         v-on:event_child="deleteAndRefresh"
                       ></deleteView>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                    </div>
+                    <tr v-for="(player, $index) in playerDetails" :key="player._id">
+                      <td>{{ $index + 1 }}</td>
+                      <td>{{ player.fullName }}</td>
+                      <td>{{ player.age }}</td>
+                      <td>{{ player.keyRole }}</td>
+                      <td>
+                        <b-button v-b-modal="'view' + player._id" variant="info">View</b-button>
+                        <div class>
+                          <memberView :display="player"></memberView>
+                        </div>
+                      </td>
+                      <td>
+                        <b-button v-b-modal="'edit' + player._id" variant="primary">Edit</b-button>
+                        <div class>
+                          <memberEdit :edit="player"></memberEdit>
+                        </div>
+                      </td>
+                      <td>
+                        <b-button variant="danger" v-b-modal="'delete' + player._id">Delete</b-button>
+                        <deleteView
+                          class="text-center"
+                          :data="{id:player._id}"
+                          v-on:event_child="deleteAndRefresh"
+                        ></deleteView>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <footerSection></footerSection>
   </div>
 </template>
 
@@ -169,8 +177,17 @@ import deleteView from "@/views/modal/delete.vue";
 import memberView from "@/views/modal/MemberView.vue";
 import memberEdit from "@/views/modal/MemberEdit.vue";
 import memberRegistration from "@/views/modal/MemberRegistration.vue";
+import footerSection from "@/views/Footer.vue";
+import headerSection from "@/views/Header.vue";
 export default {
-  components: { memberRegistration, memberView, memberEdit, deleteView },
+  components: {
+    memberRegistration,
+    memberView,
+    memberEdit,
+    deleteView,
+    headerSection,
+    footerSection
+  },
   data() {
     return {
       user: "",
@@ -371,6 +388,7 @@ export default {
 .team-detail {
   .card {
     border-radius: 5rem;
+    border: 1px solid rgba(0, 0, 0, 1);
   }
   .head-title {
     font-size: 2rem;
