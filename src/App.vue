@@ -11,6 +11,7 @@
 <script></script>
 
 <style lang="scss">
+@import "src/assets/scss/variable.scss";
 #app {
   font-family: "Titillium Web Regular";
   -webkit-font-smoothing: antialiased;
@@ -205,5 +206,13 @@
 
 body {
   font-family: "Titillium Web Regular";
+}
+
+.no-resize {
+  resize: none;
+}
+
+.no-underline:hover {
+  text-decoration: none;
 }
 </style>

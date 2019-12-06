@@ -81,6 +81,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 import {
   faFacebookF,
+  faFacebook,
   faYoutube,
   faInstagram
 } from "@fortawesome/free-brands-svg-icons";
@@ -94,13 +95,14 @@ import {
   faChevronRight,
   faChevronLeft,
   faTrashAlt,
-  faEnvelope
+  faEnvelope,
+  faMobile
 } from "@fortawesome/free-solid-svg-icons"; //fas
 
 library.add(faCoffee);
-library.add(faFacebookF, faYoutube, faInstagram); //fab
+library.add(faFacebookF, faFacebook, faYoutube, faInstagram); //fab
 library.add(faStar, faCalendar, faCopyright); //far
-library.add(faChevronRight, faChevronLeft, faTrashAlt, faEnvelope); //fas
+library.add(faChevronRight, faChevronLeft, faTrashAlt, faEnvelope, faMobile); //fas
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 

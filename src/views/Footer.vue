@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row justify-content-center align-items-center mb-5">
         <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-          <div class="text-uppercase text-right subscribe-head">Subscribe to our newsletter</div>
+          <div class="text-uppercase subscribe-head">Subscribe to our newsletter</div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-6 col-12">
           <div class>
@@ -26,7 +26,7 @@
             </form>
           </div>
         </div>
-        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+        <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-12">
           <div
             class="text-center pt-1"
             ng-if="showSubscribeValidationError"
@@ -35,13 +35,13 @@
             class="text-center pt-1"
             ng-if="showSubscribeError"
           >Something went wrong. Resubmit the form.</div>
-        </div>
+        </div>-->
       </div>
 
       <div class="row mb-4">
         <div class="col-lg-6 col-md-6 col-sm-6 col-12">
           <div class="footerLists social-list">
-            <div>RIFC Social Handles</div>
+            <div>Social Handles</div>
             <div class>
               <span class="mx-4 pointer">
                 <a href="https://www.facebook.com/royalinfiafc/" target="_blank">
@@ -85,6 +85,9 @@
               <li class="list-inline-item right-section">
                 <ul class="list-unstyled text-left">
                   <li>
+                    <router-link to="/past-championship">Past Championship</router-link>
+                  </li>
+                  <li>
                     <router-link to="/sponsor">Sponsor</router-link>
                   </li>
                   <li>
@@ -100,10 +103,9 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="footerMain text-center">
             <div class="footerLists">
-              <router-link to="/">
-                <!-- <i class="far fa-copyright"></i> -->
-                <font-awesome-icon :icon="['far', 'copyright']" class="mr-1" />2019 Copyright : mtcmarudharcup.com
-              </router-link>
+              <!-- <i class="far fa-copyright"></i> -->
+              <font-awesome-icon :icon="['far', 'copyright']" class="mr-1" />2019 Copyright :
+              <router-link to="/">mtcmarudharcup.com</router-link>
               <!-- <span class="listSeparator">|</span> -->
             </div>
             <!-- <div class="footerLists">
@@ -125,7 +127,7 @@ export default {};
 .footer-scss {
   background-color: $header-footer;
   font-size: $font-size-sm;
-  color: $text-color;
+  color: $white;
 }
 
 .footer-css {
@@ -182,7 +184,7 @@ export default {};
 
 .footerLists {
   a {
-    color: $text-color;
+    color: $white;
     text-decoration: none;
     &:hover {
       color: $header-footer-hover;

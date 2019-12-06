@@ -21,7 +21,7 @@
             <li
               v-for="menu in headerMenu"
               :key="menu.name"
-              ui-sref-active="active"
+              router-link-active="active"
               class="nav-item dropdown"
             >
               <router-link v-if="menu.link" :to="menu.link" class="nav-link text-uppercase">
@@ -70,6 +70,12 @@ export default {
           subnav: []
         },
         {
+          name: "Past Championship",
+          classis: "active",
+          link: "/past-championship",
+          subnav: []
+        },
+        {
           name: "Sponsor",
           classis: "active",
           link: "/sponsor",
@@ -110,7 +116,7 @@ export default {
       .nav-link {
         padding: 33px 22px;
         font-size: 0.93rem;
-        color: $text-color;
+        color: $white;
         &:hover {
           background-color: #ffffff30;
           color: $header-footer-hover;
@@ -119,8 +125,8 @@ export default {
       }
     }
   }
-  .navbar-light .navbar-nav .active > .nav-link {
-    color: $header-footer-hover;
+  a.nav-link.text-uppercase.router-link-exact-active.router-link-active {
+    color: $white;
     background-color: #ffffff30;
     transition: auto;
   }
