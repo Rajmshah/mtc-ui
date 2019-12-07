@@ -29,15 +29,81 @@
             <!-- ng-bind-html="about.content1 | rawHtml" -->
           </div>
         </div>
-        <div class="row" ng-if="about.content2">
+        <div class="row">
           <div class="col-lg-12 col-md-12 col-sm-12">
-            <div class="content2 titillium-web-regular">
+            <div class="mb-5 content2 titillium-web-regular">
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente quibusdam aliquid dolore nulla perspiciatis perferendis. Mollitia eaque neque rerum tempora explicabo, facilis odio provident in eveniet at consequatur quae non.</p>
 
               <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis mollitia perferendis odio reiciendis fugit itaque, modi numquam deleniti error aliquam fugiat, reprehenderit harum. Similique atque inventore esse iure quidem in.</p>
 
               <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae possimus in, nemo corporis placeat tempore pariatur cum dignissimos aliquid doloremque nesciunt, ea assumenda consequuntur vero illo adipisci? Nisi, quisquam omnis?</p>
             </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-3 col-md-3 col-sm-3">
+            <a href="/about-us" class="text-dark no-underline">
+              <div class="ad-holder mb-2">
+                <img src="../assets/480x480.jpg" alt="Ad 2" class="img-responsive ad-shape" />
+              </div>
+              <div class="ad-title titillium-web-bold font-18 mb-4 text-center">Anil Jain</div>
+            </a>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-3">
+            <a href="#" class="text-dark no-underline">
+              <div class="ad-holder mb-2">
+                <img src="../assets/480x480.jpg" alt="Ad 3" class="img-responsive ad-shape" />
+              </div>
+              <div class="ad-title titillium-web-bold font-18 mb-4 text-center">Manish Jain</div>
+            </a>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-3">
+            <a href="#" class="text-dark no-underline">
+              <div class="ad-holder mb-2">
+                <img src="../assets/480x480.jpg" alt="Ad 3" class="img-responsive ad-shape" />
+              </div>
+              <div class="ad-title titillium-web-bold font-18 mb-4 text-center">Pankaj Jain</div>
+            </a>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-3">
+            <a href="#" class="text-dark no-underline">
+              <div class="ad-holder mb-2">
+                <img src="../assets/480x480.jpg" alt="Ad 3" class="img-responsive ad-shape" />
+              </div>
+              <div class="ad-title titillium-web-bold font-18 mb-4 text-center">Raj Shah</div>
+            </a>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-3">
+            <a href="#" class="text-dark no-underline">
+              <div class="ad-holder mb-2">
+                <img src="../assets/480x480.jpg" alt="Ad 3" class="img-responsive ad-shape" />
+              </div>
+              <div class="ad-title titillium-web-bold font-18 mb-4 text-center">Raj Shah</div>
+            </a>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-3">
+            <a href="#" class="text-dark no-underline">
+              <div class="ad-holder mb-2">
+                <img src="../assets/480x480.jpg" alt="Ad 3" class="img-responsive ad-shape" />
+              </div>
+              <div class="ad-title titillium-web-bold font-18 mb-4 text-center">Raj Shah</div>
+            </a>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-3">
+            <a href="#" class="text-dark no-underline">
+              <div class="ad-holder mb-2">
+                <img src="../assets/480x480.jpg" alt="Ad 3" class="img-responsive ad-shape" />
+              </div>
+              <div class="ad-title titillium-web-bold font-18 mb-4 text-center">Raj Shah</div>
+            </a>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-3">
+            <a href="#" class="text-dark no-underline">
+              <div class="ad-holder mb-2">
+                <img src="../assets/480x480.jpg" alt="Ad 3" class="img-responsive ad-shape" />
+              </div>
+              <div class="ad-title titillium-web-bold font-18 mb-4 text-center">Raj Shah</div>
+            </a>
           </div>
         </div>
       </div>
@@ -57,15 +123,22 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .main-head {
   span {
     border-bottom-width: 3px !important;
   }
 }
 
-.team-image-holder {
+.ad-holder {
   width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.ad-shape {
+  border: 1px solid transparent;
+  border-radius: 50%;
 }
 
 .team-brief {

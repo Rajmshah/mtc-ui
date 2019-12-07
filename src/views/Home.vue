@@ -75,7 +75,7 @@
           </div>
         </div>
       </div>
-      <div class="master-class-home py-5">
+      <div class="master-class-home pb-5">
         <div class="container">
           <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-8 col-12 mx-auto">
@@ -99,7 +99,7 @@
           </div>
         </div>
       </div>
-      <div class="academy-home py-5">
+      <div class="academy-home pb-5">
         <div class="container">
           <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-8 col-12 mx-auto">
@@ -122,9 +122,167 @@
           </div>
         </div>
       </div>
+      <!--Team Scrolling-->
+      <!-- <section v-if="teams.length>0"> -->
+      <div class="bg-team pb-5">
+        <div class="team-head">
+          <h1 class="text-center text-uppercase opensans-semibold mb-3">Teams</h1>
+        </div>
+        <div class="container">
+          <!-- v-if="teams.length>0" -->
+          <div class="teams-logo">
+            <div class="swiper-container">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <div class="registerplayer-team pointer">
+                    <div class>
+                      <img src="@/assets/holder.jpg" alt="Team Logo" class="img-responsive m-auto" />
+                    </div>
+                    <div class>
+                      <h4 class="text-center text-uppercase color-black">"Team 1"</h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="registerplayer-team pointer">
+                    <div class>
+                      <img src="@/assets/holder.jpg" alt="Team Logo" class="img-responsive m-auto" />
+                    </div>
+                    <div class>
+                      <h4 class="text-center text-uppercase color-black">"Team 2"</h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="registerplayer-team pointer">
+                    <div class>
+                      <img src="@/assets/holder.jpg" alt="Team Logo" class="img-responsive m-auto" />
+                    </div>
+                    <div class>
+                      <h4 class="text-center text-uppercase color-black">"Team 3"</h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="registerplayer-team pointer">
+                    <div class>
+                      <img src="@/assets/holder.jpg" alt="Team Logo" class="img-responsive m-auto" />
+                    </div>
+                    <div class>
+                      <h4 class="text-center text-uppercase color-black">"Team 4"</h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="registerplayer-team pointer">
+                    <div class>
+                      <img src="@/assets/holder.jpg" alt="Team Logo" class="img-responsive m-auto" />
+                    </div>
+                    <div class>
+                      <h4 class="text-center text-uppercase color-black">"Team 5"</h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="registerplayer-team pointer">
+                    <div class>
+                      <img src="@/assets/holder.jpg" alt="Team Logo" class="img-responsive m-auto" />
+                    </div>
+                    <div class>
+                      <h4 class="text-center text-uppercase color-black">"Team 6"</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+        </div>
+      </div>
+      <!-- </section> -->
+
+      <!-- <section v-if="teams.length>0"> -->
+      <div class="bg-team pb-5">
+        <div class="team-head">
+          <h1 class="text-center text-uppercase opensans-semibold mb-3">Sponsors</h1>
+        </div>
+        <div class="container">
+          <!-- v-if="teams.length>0" -->
+          <div class="sponsors-logo">
+            <div class="swiper-container">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <div class="registerplayer-team pointer">
+                    <div class>
+                      <img src="@/assets/holder.jpg" alt="Team Logo" class="img-responsive m-auto" />
+                    </div>
+                    <div class>
+                      <h4 class="text-center text-uppercase color-black">"Team 1"</h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="registerplayer-team pointer">
+                    <div class>
+                      <img src="@/assets/holder.jpg" alt="Team Logo" class="img-responsive m-auto" />
+                    </div>
+                    <div class>
+                      <h4 class="text-center text-uppercase color-black">"Team 2"</h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="registerplayer-team pointer">
+                    <div class>
+                      <img src="@/assets/holder.jpg" alt="Team Logo" class="img-responsive m-auto" />
+                    </div>
+                    <div class>
+                      <h4 class="text-center text-uppercase color-black">"Team 3"</h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="registerplayer-team pointer">
+                    <div class>
+                      <img src="@/assets/holder.jpg" alt="Team Logo" class="img-responsive m-auto" />
+                    </div>
+                    <div class>
+                      <h4 class="text-center text-uppercase color-black">"Team 4"</h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="registerplayer-team pointer">
+                    <div class>
+                      <img src="@/assets/holder.jpg" alt="Team Logo" class="img-responsive m-auto" />
+                    </div>
+                    <div class>
+                      <h4 class="text-center text-uppercase color-black">"Team 5"</h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="registerplayer-team pointer">
+                    <div class>
+                      <img src="@/assets/holder.jpg" alt="Team Logo" class="img-responsive m-auto" />
+                    </div>
+                    <div class>
+                      <h4 class="text-center text-uppercase color-black">"Team 6"</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+        </div>
+      </div>
+      <!-- </section> -->
       <hr class="m-0 border-dark" hidden />
 
-      <!-- <div class="gallery-showcase bg-color text-white py-5" hidden>
+      <!-- <div class="gallery-showcase bg-color text-white pb-5" hidden>
         <div class="container">
           <div class="row">
             <div class="mx-auto">
@@ -173,7 +331,7 @@
           </div>
         </div>
       </div>-->
-      <!-- <div class="enquiries py-5" hidden>
+      <!-- <div class="enquiries pb-5" hidden>
         <div class="container">
           <div class="row">
             <div class="col-12 mx-auto">
@@ -270,7 +428,7 @@ export default {
     footerSection
   },
   mounted() {
-    var mySwiper = new Swiper(".swiper-container", {
+    var mySwiper = new Swiper(".banners-img .swiper-container", {
       // Optional parameters
       // direction: "vertical",
       loop: true,
@@ -284,6 +442,39 @@ export default {
       // scrollbar: {
       //   el: ".swiper-scrollbar"
       // }
+    });
+    var teamSlide = new Swiper(".teams-logo .swiper-container", {
+      slidesPerView: 3,
+      navigation: {
+        nextEl: ".teams-logo  .swiper-button-next",
+        prevEl: ".teams-logo  .swiper-button-prev"
+      },
+      slidesPerGroup: 3,
+      loop: true,
+      loopFillGroupWithBlank: true,
+      // preloadImages: true,
+      // reverseDirection: false
+      speed: 7000
+    });
+    var sponsorSlide = new Swiper(".sponsors-logo .swiper-container", {
+      // slidesPerView: 3,
+      // preloadImages: true,
+      speed: 7000,
+      // autoplay: 3000,
+      // spaceBetween: 10,
+      // nextButton: ".sponsors-logo .swiper-button-next",
+      // prevButton: ".sponsors-logo .swiper-button-prev",
+      // reverseDirection: false,
+      // paginationClickable: true
+      slidesPerView: 3,
+      navigation: {
+        nextEl: ".sponsors-logo  .swiper-button-next",
+        prevEl: ".sponsors-logo  .swiper-button-prev"
+      },
+      slidesPerGroup: 3,
+      loop: true,
+      loopFillGroupWithBlank: true
+      // loop: true,
     });
   }
 };
@@ -313,6 +504,33 @@ export default {
 .photo-holder:hover {
   img {
     transform: scale(1.02);
+  }
+}
+
+.teams-logo,
+.sponsors-logo {
+  position: relative;
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: 30px;
+    height: 30px;
+    margin-top: 0;
+    background-size: contain;
+    transform: translateY(-50%);
+  }
+  .swiper-button-prev,
+  .swiper-container-rtl .swiper-button-next {
+    left: -40px; // background-image: url('../img/icon/prev-black.png');
+  }
+  .swiper-button-next,
+  .swiper-container-rtl .swiper-button-prev {
+    right: -40px; // background-image: url('../img/icon/next-black.png');
+  }
+  .swiper-slide {
+    background: transparent;
+    &:hover {
+      transform: scale(1.02);
+    }
   }
 }
 

@@ -436,6 +436,44 @@
           </div>
         </div>
       </div>
+      <!--Team Scrolling-->
+      <section ng-if="teams.length>0">
+        <div class="bg-team">
+          <div class="team-head">
+            <h1 class="text-center text-uppercase opensans-semibold">Team</h1>
+          </div>
+          <div class="container">
+            <div class="teams-logo" ng-if="teams.length>0">
+              <div class="swiper-container">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide hidden-xs" ng-repeat="team in teams track by $index">
+                    <div
+                      class="bg-color-black registerplayer-team pointer"
+                      ui-sref="teamdetail({'id':team.team._id})"
+                    >
+                      <div class ng-if="team.logo">
+                        <img
+                          ng-src="{{ team.logo | uploadpath }}"
+                          alt="Team Logo"
+                          class="img-responsive m-auto"
+                        />
+                      </div>
+                      <div class ng-if="!team.logo">
+                        <img src="img/holder.png" alt="Team Logo" class="img-responsive" />
+                      </div>
+                      <div class>
+                        <h4 class="text-center text-uppercase color-white">{{ team.team.name }}</h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+            </div>
+          </div>
+        </div>
+      </section>
     </section>
 
     <footerSection></footerSection>
