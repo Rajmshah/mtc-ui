@@ -18,10 +18,8 @@
         </section>
         <section v-if="sponsorList.length>0">
           <!--  -->
-          <div
-            class="bg-team sold-player livestats stats-placing sponsor-placing"
-            v-style="sponsorList.length<=4?{'height':'100vh'}:{'height': '100%'}"
-          >
+          <div class="bg-team sold-player livestats stats-placing sponsor-placing">
+            <!-- v-style="sponsorList.length<=4?{'height':'100vh'}:{'height': '100%'}" -->
             <div class="container">
               <div class="row">
                 <!-- <div class="col-lg-12 col-md-12 col-sm-12">
@@ -37,7 +35,7 @@
               </div>
               <div class="row">
                 <div
-                  class="col-lg-3 col-md-4 col-sm-4"
+                  class="col-lg-3 col-md-4 col-sm-6"
                   v-for="sponsor in sponsorList"
                   :key="sponsor.order"
                 >
@@ -55,7 +53,7 @@
                       </div>
                       <div class="player-info">
                         <div
-                          class="text-capitalize titillium-web-semiBold text-center color-black"
+                          class="text-capitalize titillium-web-semiBold text-center color-white"
                         >{{ sponsor.name }}</div>
                       </div>
                       <div class v-if="sponsor.sponsorType && sponsor.ownerName">
@@ -63,21 +61,21 @@
                           <tbody>
                             <tr v-if="sponsor.sponsorType">
                               <td>
-                                <h4 class="text-capitalize text-center color-black">Type</h4>
+                                <h4 class="text-capitalize text-center color-white">Type</h4>
                               </td>
                               <td>
                                 <h4
-                                  class="text-capitalize text-center color-black"
+                                  class="text-capitalize text-center color-white"
                                 >{{ sponsor.sponsorType }}</h4>
                               </td>
                             </tr>
                             <tr v-if="sponsor.ownerName">
                               <td>
-                                <h4 class="text-capitalize text-center color-black">Owner</h4>
+                                <h4 class="text-capitalize text-center color-white">Owner</h4>
                               </td>
                               <td>
                                 <h4
-                                  class="text-capitalize text-center color-black"
+                                  class="text-capitalize text-center color-white"
                                 >{{ sponsor.ownerName }}</h4>
                               </td>
                             </tr>
@@ -168,16 +166,10 @@ export default {
     };
   },
   created() {
-    // this.getBannerByPageName();
-    // this.activeUsers();
-  },
-  computed: {
-    activeUsers() {
-      this.sponsorList = this.sponsorList.filter(function(u) {
-        return u.active;
-      });
-      this.sponsorList = _.orderBy(this.sponsorList, "order");
-    }
+    this.sponsorList = this.sponsorList.filter(function(u) {
+      return u.active;
+    });
+    this.sponsorList = _.orderBy(this.sponsorList, "order");
   },
   methods: {
     getlist() {
@@ -208,8 +200,6 @@ export default {
 @import "src/assets/scss/_main.scss";
 
 .sold-player {
-  // height: 100vh;
-  padding: 40px 0 60px;
   table {
     font-family: "Opensans Semibold";
     -webkit-font-smoothing: antialiased;
@@ -267,15 +257,15 @@ export default {
 .livestats {
   .table-bordered th,
   .table-bordered td {
-    background: #5596bf;
-    color: #121212;
+    background: #3e823c;
+    // color: $white;
     text-transform: uppercase;
     border: 1px solid #d7dce1;
     padding: 10px;
   }
   .table-bordered th:first-child,
   .table-bordered td:first-child {
-    background: #c0af48;
+    background: #199fe1;
   }
   .player-list {
     .table-bordered th {
@@ -297,7 +287,7 @@ export default {
     }
   }
   .player-info {
-    background: #5596bf;
+    background: #3e823c;
     padding: 9px;
     margin: 10px 0;
     border: 0;
@@ -347,7 +337,7 @@ export default {
 
 .sponsor-page {
   .sponsor-card {
-    margin-bottom: 30px;
+    margin-bottom: 25px;
   }
 }
 

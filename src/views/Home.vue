@@ -124,9 +124,9 @@
       </div>
       <!--Team Scrolling-->
       <!-- <section v-if="teams.length>0"> -->
-      <div class="bg-team pb-5">
-        <div class="team-head">
-          <h1 class="text-center text-uppercase opensans-semibold mb-3">Teams</h1>
+      <div class="pb-5">
+        <div class="subhead oswald-bold font-24 mb-5 text-uppercase text-center">
+          <span class="px-2 border-bottom border-dark">Teams</span>
         </div>
         <div class="container">
           <!-- v-if="teams.length>0" -->
@@ -194,18 +194,19 @@
                   </div>
                 </div>
               </div>
+              <div class="swiper-pagination d-sm-none"></div>
             </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next d-none d-sm-block"></div>
+            <div class="swiper-button-prev d-none d-sm-block"></div>
           </div>
         </div>
       </div>
       <!-- </section> -->
 
       <!-- <section v-if="teams.length>0"> -->
-      <div class="bg-team pb-5">
-        <div class="team-head">
-          <h1 class="text-center text-uppercase opensans-semibold mb-3">Sponsors</h1>
+      <div class="pb-5">
+        <div class="subhead oswald-bold font-24 mb-5 text-uppercase text-center">
+          <span class="px-2 border-bottom border-dark">Sponsors</span>
         </div>
         <div class="container">
           <!-- v-if="teams.length>0" -->
@@ -273,9 +274,10 @@
                   </div>
                 </div>
               </div>
+              <div class="swiper-pagination d-sm-none"></div>
             </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next d-none d-sm-block"></div>
+            <div class="swiper-button-prev d-none d-sm-block"></div>
           </div>
         </div>
       </div>
@@ -449,12 +451,36 @@ export default {
         nextEl: ".teams-logo  .swiper-button-next",
         prevEl: ".teams-logo  .swiper-button-prev"
       },
+      pagination: {
+        el: ".teams-logo .swiper-pagination",
+        clickable: true
+      },
       slidesPerGroup: 3,
       loop: true,
       loopFillGroupWithBlank: true,
       // preloadImages: true,
       // reverseDirection: false
-      speed: 7000
+      speed: 7000,
+      breakpoints: {
+        320: {
+          slidesPerView: 1,
+          slidesPerGroup: 1,
+          speed: 3000
+        },
+        640: {
+          slidesPerView: 1,
+          slidesPerGroup: 1,
+          speed: 3000
+        },
+        768: {
+          slidesPerView: 2,
+          slidesPerGroup: 2
+        },
+        992: {
+          slidesPerView: 3,
+          slidesPerGroup: 3
+        }
+      }
     });
     var sponsorSlide = new Swiper(".sponsors-logo .swiper-container", {
       // slidesPerView: 3,
@@ -471,9 +497,33 @@ export default {
         nextEl: ".sponsors-logo  .swiper-button-next",
         prevEl: ".sponsors-logo  .swiper-button-prev"
       },
+      pagination: {
+        el: ".sponsors-logo .swiper-pagination",
+        clickable: true
+      },
       slidesPerGroup: 3,
       loop: true,
-      loopFillGroupWithBlank: true
+      loopFillGroupWithBlank: true,
+      breakpoints: {
+        320: {
+          slidesPerView: 1,
+          slidesPerGroup: 1,
+          speed: 3000
+        },
+        640: {
+          slidesPerView: 1,
+          slidesPerGroup: 1,
+          speed: 3000
+        },
+        768: {
+          slidesPerView: 2,
+          slidesPerGroup: 2
+        },
+        992: {
+          slidesPerView: 3,
+          slidesPerGroup: 3
+        }
+      }
       // loop: true,
     });
   }
@@ -532,6 +582,16 @@ export default {
       transform: scale(1.02);
     }
   }
+  .swiper-pagination-bullet {
+    width: 5px;
+    height: 5px;
+  }
+  .swiper-pagination-fraction,
+  .swiper-pagination-custom,
+  .swiper-container-horizontal > .swiper-pagination-bullets {
+    bottom: 0px;
+    font-size: 0;
+  }
 }
 
 .gradient {
@@ -552,6 +612,21 @@ export default {
 //   position: fixed;
 //   width: 100%;
 // }
+@media only screen and (max-width: 992px) {
+  .teams-logo .swiper-button-prev,
+  .teams-logo .swiper-container-rtl .swiper-button-next,
+  .sponsors-logo .swiper-button-prev,
+  .sponsors-logo .swiper-container-rtl .swiper-button-next {
+    left: -15px !important;
+  }
+  .teams-logo .swiper-button-next,
+  .teams-logo .swiper-container-rtl .swiper-button-prev,
+  .sponsors-logo .swiper-button-next,
+  .sponsors-logo .swiper-container-rtl .swiper-button-prev {
+    right: -15px !important;
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .gradient {
     -webkit-box-shadow: inset 0px -60px 50px 0px rgba(22, 22, 22, 1);
