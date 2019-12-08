@@ -1,7 +1,7 @@
 <template>
   <div class="footer-scss footer-css pt-5 pb-3 titillium-web-semiBold">
     <div class="container">
-      <div class="row justify-content-center align-items-center mb-5">
+      <div class="row justify-content-center align-items-center mb-5" hidden>
         <div class="col-lg-3 col-md-4 col-sm-6 col-12">
           <div class="text-uppercase subscribe-head">Subscribe to our newsletter</div>
         </div>

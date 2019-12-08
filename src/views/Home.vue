@@ -75,35 +75,32 @@
           </div>
         </div>
       </div>
-      <div class="master-class-home pb-5">
+      <div class="academy-home">
         <div class="container">
           <div class="row">
-            <div class="col-lg-8 col-md-8 col-sm-8 col-12 mx-auto">
-              <div class="subhead oswald-bold font-24 mb-5 text-uppercase text-center">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 mx-auto pb-5">
+              <div class="subhead oswald-bold font-30 mb-5 text-uppercase text-center">
                 <span class="px-2 border-bottom border-dark">About Us</span>
               </div>
-              <div class="text-justify mb-3">
+              <div class="text-justify mb-4">
                 <p>
                   Master class is an interactive experience for budding footballers
                   of the nation, We at RIFC offer master class sessions with the
                   icons of the footballing industry where the RIFC athletes get to
                   learn about the on-field and off-field aspects of the beautiful
-                  game in an interactive session wherein the athletes develop into
-                  better professionals.
+                  game in an interactive session wherein the athletes develop.
                 </p>
               </div>
               <div class="know-more text-center">
+                <!-- <router-link
+                  class="no-underline pointer text-uppercase titillium-web-semiBold"
+                  to="/about-us"
+                >Know More</router-link>-->
                 <router-link class="btn border-dark" to="/about-us">Know More</router-link>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="academy-home pb-5">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8 col-md-8 col-sm-8 col-12 mx-auto">
-              <div class="subhead oswald-bold font-24 mb-5 text-uppercase text-center">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 mx-auto pb-5">
+              <div class="subhead oswald-bold font-30 mb-5 text-uppercase text-center">
                 <span class="px-2 border-bottom border-dark">Past Championship</span>
               </div>
               <div class="text-justify">
@@ -115,7 +112,11 @@
                   will introduce them to the Indian footballing culture.
                 </p>
               </div>
-              <div class="know-more text-center mt-5">
+              <div class="know-more text-center mt-4">
+                <!-- <router-link
+                  class="no-underline pointer text-uppercase titillium-web-semiBold"
+                  to="/past-championship"
+                >Know More</router-link>-->
                 <router-link class="btn border-dark" to="/past-championship">Know More</router-link>
               </div>
             </div>
@@ -125,7 +126,7 @@
       <!--Team Scrolling-->
       <!-- <section v-if="teams.length>0"> -->
       <div class="pb-5">
-        <div class="subhead oswald-bold font-24 mb-5 text-uppercase text-center">
+        <div class="subhead oswald-bold font-30 mb-5 text-uppercase text-center">
           <span class="px-2 border-bottom border-dark">Teams</span>
         </div>
         <div class="container">
@@ -205,7 +206,7 @@
 
       <!-- <section v-if="teams.length>0"> -->
       <div class="pb-5">
-        <div class="subhead oswald-bold font-24 mb-5 text-uppercase text-center">
+        <div class="subhead oswald-bold font-30 mb-5 text-uppercase text-center">
           <span class="px-2 border-bottom border-dark">Sponsors</span>
         </div>
         <div class="container">
@@ -282,14 +283,13 @@
         </div>
       </div>
       <!-- </section> -->
-      <hr class="m-0 border-dark" hidden />
 
       <!-- <div class="gallery-showcase bg-color text-white pb-5" hidden>
         <div class="container">
           <div class="row">
             <div class="mx-auto">
               <div class="text-center mb-5">
-                <div class="subhead oswald-bold font-24 text-uppercase">
+                <div class="subhead oswald-bold font-30 text-uppercase">
                   <span class="px-2 border-bottom border-light">Gallery</span>
                 </div>
                 <div class="font-12">
@@ -329,83 +329,6 @@
               <div class="text-center pt-3">
                 <a class="text-light btn-link btn-dark" ui-sref="gallery">View More</a>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>-->
-      <!-- <div class="enquiries pb-5" hidden>
-        <div class="container">
-          <div class="row">
-            <div class="col-12 mx-auto">
-              <div class="subhead oswald-bold font-24 mb-5 text-uppercase text-center">
-                <span class="px-2 border-bottom border-dark">Enquiry</span>
-              </div>
-              <form name="enquiryForm" role="form" ng-submit="saveEnquiryForm(formData)">
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <input
-                        type="text"
-                        class="form-control"
-                        name="name"
-                        id
-                        ng-model="formData.name"
-                        placeholder="Name"
-                        only-alpha
-                      />
-                    </div>
-                    <div class="form-group">
-                      <input
-                        type="tel"
-                        class="form-control"
-                        name="mobile"
-                        maxlength="10"
-                        minlength="8"
-                        id
-                        only-digits
-                        ng-model="formData.mobile"
-                        placeholder="Mobile"
-                      />
-                    </div>
-                    <div class="form-group">
-                      <input
-                        type="email"
-                        class="form-control"
-                        name="email"
-                        id
-                        ng-model="formData.email"
-                        placeholder="Email ID"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class>
-                      <textarea
-                        class="form-control no-resize"
-                        name="query"
-                        id
-                        maxlength="300"
-                        rows="8"
-                        ng-model="formData.query"
-                        ng-draggable="false"
-                        placeholder="Only upto 300 words"
-                      ></textarea>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="submit text-center mt-3">
-                      <div
-                        class="pb-3"
-                        ng-if="showValidationError"
-                      >Fill up all the fields with valid values.</div>
-                      <div class="pb-3" ng-if="showError">Something went wrong. Resubmit the form.</div>
-                      <button class="btn btn-light" type="submit">Submit</button>
-                    </div>
-                  </div>
-                </div>
-              </form>
             </div>
           </div>
         </div>
@@ -526,7 +449,8 @@ export default {
       }
       // loop: true,
     });
-  }
+  },
+  methods: {}
 };
 </script>
 
@@ -556,6 +480,12 @@ export default {
     transform: scale(1.02);
   }
 }
+
+// .know-more a {
+//   color: #212529;
+//   font-size: 1rem;
+//   line-height: 1.5;
+// }
 
 .teams-logo,
 .sponsors-logo {

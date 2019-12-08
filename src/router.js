@@ -5,7 +5,7 @@ import About from "./views/About.vue";
 import Gallery from "./views/Gallery.vue";
 import Login from "./views/Login.vue";
 import ContactUs from "./views/ContactUs.vue";
-import Sponsor from "./views/Sponsor-actual.vue";
+import Sponsor from "./views/Sponsor.vue";
 import Championship from "./views/PastChampionship.vue";
 import TeamDetail from "./views/TeamDetail.vue";
 

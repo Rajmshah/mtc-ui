@@ -62,7 +62,7 @@
                   <div class="text-uppercase oswald-bold">Facebook Link</div>
                   <div class>
                     <div class v-for="link in contact.social" :key="link">
-                      <a :href="link" target="_blank">Click Here</a>
+                      <a :href="link" target="_blank" class="social-link no-underline">Click Here</a>
                     </div>
                   </div>
                 </div>
@@ -78,9 +78,9 @@
             </div>
           </div>
         </div>
-        <div class="row" hidden>
+        <div class="row">
           <div class="col-lg-10 col-md-10 col-sm-12 col-12 mx-auto mb-5">
-            <form name="enquiryForm" role="form" ng-submit="saveEnquiryForm(formData)">
+            <form name="enquiryForm" role="form" @submit="saveEnquiryForm">
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
@@ -89,7 +89,7 @@
                       class="form-control"
                       name="name"
                       id
-                      ng-model="formData.name"
+                      v-model="formData.name"
                       placeholder="Name"
                       only-alpha
                     />
@@ -103,7 +103,7 @@
                       minlength="8"
                       id
                       only-digits
-                      ng-model="formData.mobile"
+                      v-model="formData.mobile"
                       placeholder="Mobile"
                     />
                   </div>
@@ -113,7 +113,7 @@
                       class="form-control"
                       name="email"
                       id
-                      ng-model="formData.email"
+                      v-model="formData.email"
                       placeholder="Email ID"
                     />
                   </div>
@@ -126,8 +126,8 @@
                       id
                       maxlength="300"
                       rows="8"
-                      ng-model="formData.query"
-                      ng-draggable="false"
+                      v-model="formData.query"
+                      v-draggable="false"
                       placeholder="Only upto 300 words"
                     ></textarea>
                   </div>
@@ -138,10 +138,10 @@
                   <div class="submit text-center mt-3">
                     <div
                       class="pb-3"
-                      ng-if="showValidationError"
+                      v-if="showValidationError"
                     >Fill up all the fields with valid values.</div>
-                    <div class="pb-3" ng-if="showError">Something went wrong. Resubmit the form.</div>
-                    <button class="btn btn-dark" type="submit">Submit</button>
+                    <div class="pb-3" v-if="showError">Something went wrong. Resubmit the form.</div>
+                    <button class="btn border-dark" type="submit">Submit</button>
                   </div>
                 </div>
               </div>
@@ -175,6 +175,7 @@ export default {
   },
   data() {
     return {
+      formData: {},
       contact: {
         mobile: [
           { name: "Anil Jain", phone: 9619711447 },
@@ -191,6 +192,9 @@ export default {
       map:
         "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3558.461309665937!2d75.71155415024158!3d26.888850983055047!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396c4b121b024b29%3A0xad9271b72d178aeb!2sMarudhar%20cricket%20club!5e0!3m2!1sen!2sin!4v1575681111745!5m2!1sen!2sin"
     };
+  },
+  methods: {
+    saveEnquiryForm() {}
   }
 };
 </script>
@@ -209,6 +213,11 @@ export default {
   height: 100%;
   width: 100%;
   position: absolute;
+}
+a.social-link {
+  color: #212529;
+  font-size: 1rem;
+  line-height: 1.5;
 }
 @media only screen and (max-width: 768px) {
   .text-center.border-left.border-right.border-dark.px-3.mobile-border {
