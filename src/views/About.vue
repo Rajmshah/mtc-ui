@@ -4,7 +4,7 @@
     <section class="about-us my-5">
       <!-- <div class="banners-img" ng-if="banner.banner">
         <img
-          ng-src="{{ banner.banner | uploadpath }}"
+          ng-src="{{ banner.banner | serverimage }}"
           alt="{{ banner.name }} Banner"
           class="img-responsive"
         />
@@ -17,93 +17,37 @@
             </div>
           </div>
         </div>
-        <div class="row">
+        <div class="row" v-if="about.content1">
           <div class="col-lg-12 col-md-12 col-sm-12">
-            <div class="mb-5 content1 titillium-web-regular">
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente quibusdam aliquid dolore nulla perspiciatis perferendis. Mollitia eaque neque rerum tempora explicabo, facilis odio provident in eveniet at consequatur quae non.</p>
-
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis mollitia perferendis odio reiciendis fugit itaque, modi numquam deleniti error aliquam fugiat, reprehenderit harum. Similique atque inventore esse iure quidem in.</p>
-
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae possimus in, nemo corporis placeat tempore pariatur cum dignissimos aliquid doloremque nesciunt, ea assumenda consequuntur vero illo adipisci? Nisi, quisquam omnis?</p>
-            </div>
-            <!-- ng-bind-html="about.content1 | rawHtml" -->
+            <div class="mb-5 content1 titillium-web-regular" v-html="about.content1"></div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-lg-12 col-md-12 col-sm-12">
-            <div class="mb-5 content2 titillium-web-regular">
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente quibusdam aliquid dolore nulla perspiciatis perferendis. Mollitia eaque neque rerum tempora explicabo, facilis odio provident in eveniet at consequatur quae non.</p>
-
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis mollitia perferendis odio reiciendis fugit itaque, modi numquam deleniti error aliquam fugiat, reprehenderit harum. Similique atque inventore esse iure quidem in.</p>
-
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae possimus in, nemo corporis placeat tempore pariatur cum dignissimos aliquid doloremque nesciunt, ea assumenda consequuntur vero illo adipisci? Nisi, quisquam omnis?</p>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-3 col-md-3 col-sm-3">
-            <a href="/about-us" class="text-dark no-underline">
-              <div class="ad-holder mb-2">
+        <div class="row" v-if="showTeam">
+          <div class="col-lg-3 col-md-3 col-sm-3" v-for="team in about.team" :key="team._id">
+            <div class="text-dark no-underline" v-if="team.status">
+              <div class="ad-holder mb-2" v-if="!team.image">
                 <img src="../assets/480x480.jpg" alt="Ad 2" class="img-responsive ad-shape" />
               </div>
-              <div class="ad-title titillium-web-bold font-18 mb-4 text-center">Anil Jain</div>
-            </a>
-          </div>
-          <div class="col-lg-3 col-md-3 col-sm-3">
-            <a href="#" class="text-dark no-underline">
-              <div class="ad-holder mb-2">
-                <img src="../assets/480x480.jpg" alt="Ad 3" class="img-responsive ad-shape" />
+
+              <div class="ad-holder mb-2" v-if="team.image">
+                <img
+                  :src="team.image | serverimage"
+                  :alt="team.name"
+                  class="img-responsive ad-shape"
+                />
               </div>
-              <div class="ad-title titillium-web-bold font-18 mb-4 text-center">Manish Jain</div>
-            </a>
+              <div class="ad-title titillium-web-bold font-18 mb-4 text-center">{{team.name}}</div>
+            </div>
           </div>
-          <div class="col-lg-3 col-md-3 col-sm-3">
-            <a href="#" class="text-dark no-underline">
-              <div class="ad-holder mb-2">
-                <img src="../assets/480x480.jpg" alt="Ad 3" class="img-responsive ad-shape" />
-              </div>
-              <div class="ad-title titillium-web-bold font-18 mb-4 text-center">Pankaj Jain</div>
-            </a>
+        </div>
+        <div class="row" v-if="about.content2">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="mb-5 content2 titillium-web-regular" v-html="about.content2"></div>
           </div>
-          <div class="col-lg-3 col-md-3 col-sm-3">
-            <a href="#" class="text-dark no-underline">
-              <div class="ad-holder mb-2">
-                <img src="../assets/480x480.jpg" alt="Ad 3" class="img-responsive ad-shape" />
-              </div>
-              <div class="ad-title titillium-web-bold font-18 mb-4 text-center">Raj Shah</div>
-            </a>
-          </div>
-          <div class="col-lg-3 col-md-3 col-sm-3">
-            <a href="#" class="text-dark no-underline">
-              <div class="ad-holder mb-2">
-                <img src="../assets/480x480.jpg" alt="Ad 3" class="img-responsive ad-shape" />
-              </div>
-              <div class="ad-title titillium-web-bold font-18 mb-4 text-center">Raj Shah</div>
-            </a>
-          </div>
-          <div class="col-lg-3 col-md-3 col-sm-3">
-            <a href="#" class="text-dark no-underline">
-              <div class="ad-holder mb-2">
-                <img src="../assets/480x480.jpg" alt="Ad 3" class="img-responsive ad-shape" />
-              </div>
-              <div class="ad-title titillium-web-bold font-18 mb-4 text-center">Raj Shah</div>
-            </a>
-          </div>
-          <div class="col-lg-3 col-md-3 col-sm-3">
-            <a href="#" class="text-dark no-underline">
-              <div class="ad-holder mb-2">
-                <img src="../assets/480x480.jpg" alt="Ad 3" class="img-responsive ad-shape" />
-              </div>
-              <div class="ad-title titillium-web-bold font-18 mb-4 text-center">Raj Shah</div>
-            </a>
-          </div>
-          <div class="col-lg-3 col-md-3 col-sm-3">
-            <a href="#" class="text-dark no-underline">
-              <div class="ad-holder mb-2">
-                <img src="../assets/480x480.jpg" alt="Ad 3" class="img-responsive ad-shape" />
-              </div>
-              <div class="ad-title titillium-web-bold font-18 mb-4 text-center">Raj Shah</div>
-            </a>
+        </div>
+        <div class="row" v-if="about == {}">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="mb-5 text-center oswald-semiBold text-uppercase">Updating Soon</div>
           </div>
         </div>
       </div>
@@ -115,10 +59,48 @@
 <script>
 import headerSection from "@/views/Header.vue";
 import footerSection from "@/views/Footer.vue";
+import service from "@/service/apiservice.js";
 export default {
   components: {
     headerSection,
     footerSection
+  },
+  data() {
+    return {
+      about: {},
+      showTeam: false,
+      datafound: false
+    };
+  },
+  created() {
+    this.searchAbout();
+  },
+  methods: {
+    searchAbout() {
+      const formData = {};
+      service.searchAbout(formData, data => {
+        if (data) {
+          this.about = data.data[0];
+          if (this.about.team.length > 0) {
+            this.temp = _.filter(this.about.team, function(o) {
+              if (o.status == true) {
+                return o;
+              }
+            });
+            if (this.temp.length <= 0) {
+              this.showTeam = false;
+            } else {
+              this.showTeam = true;
+            }
+          } else {
+            this.showTeam = false;
+          }
+        } else {
+          this.showTeam = false;
+          this.about = {};
+        }
+      });
+    }
   }
 };
 </script>
@@ -137,7 +119,7 @@ export default {
 }
 
 .ad-shape {
-  border: 1px solid transparent;
+  border: 1px solid #000;
   border-radius: 50%;
 }
 

@@ -44,13 +44,13 @@
             <div>Social Handles</div>
             <div class>
               <span class="mx-4 pointer">
-                <a href="https://www.facebook.com/royalinfiafc/" target="_blank">
+                <a>
                   <!-- <i class="fab fa-facebook"></i> -->
                   <font-awesome-icon :icon="['fab', 'facebook-f']" />
                 </a>
               </span>
               <span class="pointer">
-                <a href="https://instagram.com/royalindiafc?igshid=tl1rkuq2p28o" target="_blank">
+                <a>
                   <font-awesome-icon :icon="['fab', 'instagram']" />
                 </a>
               </span>

@@ -11,7 +11,7 @@
       >
         <div class="" ng-if="banner.image">
           <img
-            src="{{ banner.image | uploadpath }}"
+            src="{{ banner.image | serverimage }}"
             alt="{{ banner.title }}"
             class="img-responsive"
           />
@@ -34,7 +34,7 @@
       >
         <div class="" ng-if="banner.image">
           <img
-            src="{{ banner.image | uploadpath }}"
+            src="{{ banner.image | serverimage }}"
             alt="{{ banner.title }}"
             class="img-responsive"
           />
@@ -67,7 +67,7 @@
                 ng-if="banner.linkType == 'Internal'"
                   >-->
                   <img
-                    ng-src="{{ banner.image | uploadpath }}"
+                    ng-src="{{ banner.image | serverimage }}"
                     alt="Academy Banner"
                     class="img-responsive"
                   />
@@ -78,7 +78,7 @@
                 ng-if="banner.linkType == 'External'"
               >
               <img
-                ng-src="{{ banner.image | uploadpath }}"
+                ng-src="{{ banner.image | serverimage }}"
                 alt="Academy Banner"
                 class="img-responsive"
               />
@@ -144,7 +144,7 @@
                 </div>
                 <div class="ad-holder pb-2" ng-if="ads.image">
                   <img
-                    ng-src="{{ ads.image | uploadpath }}"
+                    ng-src="{{ ads.image | serverimage }}"
                     alt="{{ ads.title }}"
                     class="img-responsive"
                   />
@@ -165,7 +165,7 @@
                 </div>
                 <div class="ad-holder pb-2" ng-if="ads.image">
                   <img
-                    ng-src="{{ ads.image | uploadpath }}"
+                    ng-src="{{ ads.image | serverimage }}"
                     alt="{{ ads.title }}"
                     class="img-responsive"
                   />
@@ -453,7 +453,7 @@
                     >
                       <div class ng-if="team.logo">
                         <img
-                          ng-src="{{ team.logo | uploadpath }}"
+                          ng-src="{{ team.logo | serverimage }}"
                           alt="Team Logo"
                           class="img-responsive m-auto"
                         />

@@ -129,7 +129,78 @@ export default {
       .catch(err => {
         callback(err);
       }),
+  //Search About
+  searchAbout: (data, callback) =>
+    axios
+      .get(`${adminUrl}About/`, { params: data })
+      .then(responseData => {
+        callback(responseData);
+      })
+      .catch(err => {
+        callback(err);
+      }),
 
+  //Sponsor List
+  getList: (data, callback) =>
+    axios
+      .get(`${adminUrl}Sponsor/getList`, { params: data })
+      .then(responseData => {
+        callback(responseData);
+      })
+      .catch(err => {
+        callback(err);
+      }),
+  //Contact List
+  searchContact: (data, callback) =>
+    axios
+      .get(`${adminUrl}Contact/`, { params: data })
+      .then(responseData => {
+        callback(responseData);
+      })
+      .catch(err => {
+        callback(err);
+      }),
+  //Enquiry FOrm
+  saveEnquiryForm: (data, callback) =>
+    axios
+      .post(`${adminUrl}EnquiryForm/saveEnquiryForm`, data)
+      .then(responseData => {
+        callback(responseData);
+      })
+      .catch(err => {
+        callback(err);
+      }),
+  //Home Page
+  searchHomepage: (data, callback) =>
+    axios
+      .get(`${adminUrl}Homepage/`, { params: data })
+      .then(responseData => {
+        callback(responseData);
+      })
+      .catch(err => {
+        callback(err);
+      }),
+  //Get Team List
+  getAllTeam: (data, callback) =>
+    axios
+      .get(`${adminUrl}Team/getAll`, { params: data })
+      .then(responseData => {
+        callback(responseData);
+      })
+      .catch(err => {
+        callback(err);
+      }),
+  //Get Sponsor All
+  getAllSponsor: (data, callback) =>
+    axios
+      .get(`${adminUrl}Sponsor/getAll`, { params: data })
+      .then(responseData => {
+        callback(responseData);
+      })
+      .catch(err => {
+        callback(err);
+      }),
+  //Image Upload
   upload: function(formData, callback) {
     axios
       .post(this.uploadUrl, formData)

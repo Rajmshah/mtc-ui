@@ -131,15 +131,12 @@
           />
           <div>
             <span>
-              <font
-                color="red"
-                class="note small"
-              >Please Upload Image of Size less than 1MB</font>
+              <font color="red" class="note small">Please Upload Image of Size less than 1MB</font>
             </span>
           </div>
         </b-form-group>
         <b-form-group v-if="playerDetail.photograph">
-          <img :src="playerDetail.photograph | uploadpath" width="150" height="auto" />
+          <img :src="playerDetail.photograph | serverimage" width="150" height="auto" />
         </b-form-group>
         <div v-if="errorCheck">{{ errMessage }}</div>
         <b-button class="mt-3" type="submit" variant="success">Submit</b-button>
@@ -217,7 +214,8 @@ export default {
         this.playerDetail.battingType &&
         this.playerDetail.bowlingType &&
         this.playerDetail.firstName &&
-        (this.playerDetail.isWicketkeeper == false || this.playerDetail.isWicketkeeper == true) &&
+        (this.playerDetail.isWicketkeeper == false ||
+          this.playerDetail.isWicketkeeper == true) &&
         this.playerDetail.keyRole &&
         this.playerDetail.mobile &&
         this.playerDetail.surname

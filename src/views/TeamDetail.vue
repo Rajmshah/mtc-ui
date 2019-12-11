@@ -46,7 +46,7 @@
                     @change="onFilePicked"
                   />
                   <div v-if="teamLogo" class="mr-4">
-                    <img :src="teamLogo | uploadpath" width="100" height="auto" alt />
+                    <img :src="teamLogo | serverimage" width="100" height="auto" alt />
                   </div>
                   <b-button class="mb-2" type="submit" variant="success">Submit</b-button>
                 </b-form>
@@ -92,7 +92,7 @@
                     />
                     <img
                       class="img-fluid mr-4"
-                      :src="teamDetail.logo | uploadpath"
+                      :src="teamDetail.logo | serverimage"
                       width="100"
                       height="auto"
                       alt

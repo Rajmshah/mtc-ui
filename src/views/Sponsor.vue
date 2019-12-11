@@ -1,32 +1,26 @@
 <template>
   <div>
     <headerSection></headerSection>
-    <section v-if="banner" class="my-5">
-      <section class="reportcard-page celebrity-page" v-if="wholePage">
+    <section class="my-5">
+      <!-- <section class="reportcard-page celebrity-page" v-if="wholePage">
         <div class>
           <div class="celebrity-holder">
-            <img :src="banner.banner | uploadpath" alt class="img-responsive" />
+            <img :src="banner.banner | serverimage" alt class="img-responsive" />
           </div>
         </div>
-      </section>
+      </section>-->
 
       <section class="sponsor-page" v-if="!wholePage">
-        <section v-if="banner.banner">
+        <!-- <section v-if="banner.banner">
           <div class="banners-img">
-            <img :src="banner.banner | uploadpath" alt="Sponsor Banner" class="img-responsive" />
+            <img :src="banner.banner | serverimage" alt="Sponsor Banner" class="img-responsive" />
           </div>
-        </section>
-        <section v-if="sponsorList.length>0">
+        </section>-->
+        <section v-if="sponsorList != {}">
           <!--  -->
           <div class="bg-team sold-player livestats stats-placing sponsor-placing">
-            <!-- v-style="sponsorList.length<=4?{'height':'100vh'}:{'height': '100%'}" -->
             <div class="container">
               <div class="row">
-                <!-- <div class="col-lg-12 col-md-12 col-sm-12">
-                  <div class="team-head">
-                    <h1 class="text-center text-uppercase opensans-semibold pb-5">SPONSORS</h1>
-                  </div>
-                </div>-->
                 <div class="col-lg-12 col-md-12 col-sm-12">
                   <div class="text-center text-uppercase oswald-bold main-head font-32 mb-5">
                     <span class="border-bottom border-dark px-2">Sponsors</span>
@@ -35,10 +29,10 @@
               </div>
               <div class="row">
                 <div class="col-lg-10 mx-auto">
-                  <div class="row mb-5">
+                  <div class="row mb-5" v-if="sponsorList.sponsorBigList.length > 0">
                     <div
                       class="col-lg-6 col-md-6 col-sm-6"
-                      v-for="sponsor in sponsorList"
+                      v-for="sponsor in sponsorList.sponsorBigList"
                       :key="sponsor.order"
                     >
                       <a class="player-card pointer" :href="sponsor.link" target="_blank">
@@ -88,10 +82,10 @@
                       </a>
                     </div>
                   </div>
-                  <div class="row mb-5">
+                  <div class="row mb-5" v-if="sponsorList.sponsorMediumList.length > 0">
                     <div
                       class="col-lg-4 col-md-6 col-sm-6"
-                      v-for="sponsor in sponsorList"
+                      v-for="sponsor in sponsorList.sponsorMediumList"
                       :key="sponsor.order"
                     >
                       <a class="player-card pointer" :href="sponsor.link" target="_blank">
@@ -141,10 +135,10 @@
                       </a>
                     </div>
                   </div>
-                  <div class="row mb-5">
+                  <div class="row mb-5" v-if="sponsorList.sponsorSmallList.length > 0">
                     <div
                       class="col-lg-3 col-md-4 col-sm-6"
-                      v-for="sponsor in sponsorList"
+                      v-for="sponsor in sponsorList.sponsorSmallList"
                       :key="sponsor.order"
                     >
                       <a class="player-card pointer" :href="sponsor.link" target="_blank">
@@ -194,6 +188,14 @@
                       </a>
                     </div>
                   </div>
+                  <div
+                    class="row"
+                    v-if="sponsorList.sponsorBigList.length == 0 && sponsorList.sponsorMediumList.length == 0 && sponsorList.sponsorSmallList.length == 0"
+                  >
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                      <div class="mb-5 text-center oswald-semiBold text-uppercase">Updating Soon</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -201,12 +203,12 @@
         </section>
       </section>
     </section>
-    <section v-if="!banner">
+    <!-- <section v-if="!banner">
       <div class="text-center opensans-semibold text-uppercase comiv-soon">
         <p>Coming</p>
         <p>Soon</p>
       </div>
-    </section>
+    </section>-->
     <footerSection></footerSection>
   </div>
 </template>
@@ -214,6 +216,7 @@
 <script>
 import headerSection from "@/views/Header.vue";
 import footerSection from "@/views/Footer.vue";
+import service from "@/service/apiservice.js";
 export default {
   components: {
     headerSection,
@@ -221,79 +224,163 @@ export default {
   },
   data() {
     return {
-      sponsorList: [
-        {
-          active: true,
-          logo: "../assets/mtc-logo.png",
-          name: "Man of the series",
-          ownerName: "Rajnikant",
-          sponsorType: "Comic",
-          order: 3
-        },
-        {
-          active: false,
-          logo: "../assets/mtc-logo.png",
-          name: "Man of the series",
-          ownerName: "Rajnikant 1",
-          sponsorType: "Comic",
-          order: 2
-        },
-        {
-          active: true,
-          logo: "../assets/mtc-logo.png",
-          name: "Man of the series",
-          ownerName: "Salman Khan",
-          sponsorType: "Comic",
-          order: 1
-        },
-        {
-          active: true,
-          logo: "../assets/mtc-logo.png",
-          name: "Man of the series",
-          ownerName: "Salman Khan 4",
-          sponsorType: "Comic",
-          order: 4
-        },
-        {
-          active: true,
-          logo: "../assets/mtc-logo.png",
-          name: "Man of the series",
-          ownerName: "Salman Khan 5",
-          sponsorType: "Comic",
-          order: 5
-        }
-      ],
+      // sponsorBigList: [
+      //   {
+      //     active: true,
+      //     logo: "../assets/mtc-logo.png",
+      //     name: "Man of the series",
+      //     ownerName: "Rajnikant",
+      //     sponsorType: "Comic",
+      //     order: 3
+      //   },
+      //   {
+      //     active: false,
+      //     logo: "../assets/mtc-logo.png",
+      //     name: "Man of the series",
+      //     ownerName: "Rajnikant 1",
+      //     sponsorType: "Comic",
+      //     order: 2
+      //   },
+      //   {
+      //     active: true,
+      //     logo: "../assets/mtc-logo.png",
+      //     name: "Man of the series",
+      //     ownerName: "Salman Khan",
+      //     sponsorType: "Comic",
+      //     order: 1
+      //   },
+      //   {
+      //     active: true,
+      //     logo: "../assets/mtc-logo.png",
+      //     name: "Man of the series",
+      //     ownerName: "Salman Khan 4",
+      //     sponsorType: "Comic",
+      //     order: 4
+      //   },
+      //   {
+      //     active: true,
+      //     logo: "../assets/mtc-logo.png",
+      //     name: "Man of the series",
+      //     ownerName: "Salman Khan 5",
+      //     sponsorType: "Comic",
+      //     order: 5
+      //   }
+      // ],
+      // sponsorMediumList: [
+      //   {
+      //     active: true,
+      //     logo: "../assets/mtc-logo.png",
+      //     name: "Man of the series",
+      //     ownerName: "Rajnikant",
+      //     sponsorType: "Comic",
+      //     order: 3
+      //   },
+      //   {
+      //     active: false,
+      //     logo: "../assets/mtc-logo.png",
+      //     name: "Man of the series",
+      //     ownerName: "Rajnikant 1",
+      //     sponsorType: "Comic",
+      //     order: 2
+      //   },
+      //   {
+      //     active: true,
+      //     logo: "../assets/mtc-logo.png",
+      //     name: "Man of the series",
+      //     ownerName: "Salman Khan",
+      //     sponsorType: "Comic",
+      //     order: 1
+      //   },
+      //   {
+      //     active: true,
+      //     logo: "../assets/mtc-logo.png",
+      //     name: "Man of the series",
+      //     ownerName: "Salman Khan 4",
+      //     sponsorType: "Comic",
+      //     order: 4
+      //   },
+      //   {
+      //     active: true,
+      //     logo: "../assets/mtc-logo.png",
+      //     name: "Man of the series",
+      //     ownerName: "Salman Khan 5",
+      //     sponsorType: "Comic",
+      //     order: 5
+      //   }
+      // ],
+      // sponsorSmallList: [
+      //   {
+      //     active: true,
+      //     logo: "../assets/mtc-logo.png",
+      //     name: "Man of the series",
+      //     ownerName: "Rajnikant",
+      //     sponsorType: "Comic",
+      //     order: 3
+      //   },
+      //   {
+      //     active: false,
+      //     logo: "../assets/mtc-logo.png",
+      //     name: "Man of the series",
+      //     ownerName: "Rajnikant 1",
+      //     sponsorType: "Comic",
+      //     order: 2
+      //   },
+      //   {
+      //     active: true,
+      //     logo: "../assets/mtc-logo.png",
+      //     name: "Man of the series",
+      //     ownerName: "Salman Khan",
+      //     sponsorType: "Comic",
+      //     order: 1
+      //   },
+      //   {
+      //     active: true,
+      //     logo: "../assets/mtc-logo.png",
+      //     name: "Man of the series",
+      //     ownerName: "Salman Khan 4",
+      //     sponsorType: "Comic",
+      //     order: 4
+      //   },
+      //   {
+      //     active: true,
+      //     logo: "../assets/mtc-logo.png",
+      //     name: "Man of the series",
+      //     ownerName: "Salman Khan 5",
+      //     sponsorType: "Comic",
+      //     order: 5
+      //   }
+      // ],
       wholePage: false,
-      banner: {}
+      banner: {},
+      sponsorList: {}
     };
   },
   created() {
-    this.sponsorList = this.sponsorList.filter(function(u) {
-      return u.active;
-    });
-    this.sponsorList = _.orderBy(this.sponsorList, "order");
+    this.getList();
   },
   methods: {
-    getlist() {
-      var constraints = {};
-      var url = "Sponsor/getlist";
-      NavigationService.getlist(url, function(data) {
-        this.sponsorList = data.data;
-      });
-    },
-
-    getBannerByPageName() {
-      var constraints = {};
-      constraints.pageName = "Sponsor";
-      var url = "Banner/getBannerByPageName";
-      NavigationService.getBannerByPageName(url, constraints, function(data) {
-        this.banner = data.data[0];
-        this.wholePage = data.data[0].isWhole;
-        if (this.wholePage == false) {
-          this.getlist();
+    getList() {
+      service.getList({}, data => {
+        if (data.status == 200) {
+          this.sponsorList = data.data;
+        } else {
+          this.sponsorList = {};
         }
       });
     }
+
+    // getBannerByPageName() {
+    //   var constraints = {};
+    //   constraints.pageName = "Sponsor";
+    //   var url = "Banner/getBannerByPageName";
+    //   NavigationService.getBannerByPageName(url, constraints, function(data) {
+    //     this.banner = data.data[0];
+    //     this.wholePage = data.data[0].isWhole;
+    //     if (this.wholePage == false) {
+    //       this.getlist();
+    //     }
+    //   });
+    // }
   }
 };
 </script>

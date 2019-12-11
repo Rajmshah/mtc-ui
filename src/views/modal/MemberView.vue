@@ -121,7 +121,7 @@
           ></b-form-select>
         </b-form-group>
         <b-form-group v-if="playerDetail.photograph">
-          <img :src="playerDetail.photograph | uploadpath" width="150" height="auto" />
+          <img :src="playerDetail.photograph | serverimage" width="150" height="auto" />
         </b-form-group>
       </form>
     </b-modal>

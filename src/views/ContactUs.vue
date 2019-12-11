@@ -4,7 +4,7 @@
     <section class="contact-us pt-5">
       <!-- <div class="banners-img" ng-if="banner.banner">
     <img
-      ng-src="{{ banner.banner | uploadpath }}"
+      ng-src="{{ banner.banner | serverimage }}"
       alt="{{ banner.name }} Banner"
       class="img-responsive"
     />
@@ -70,45 +70,51 @@
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-10 mx-auto mb-5">
-            <div class="text-center">
-              <span class="text-uppercase oswald-bold">Office Address:</span>
-              <span class="px-3">{{ contact.officeAddress }}</span>
+        <div class="row" v-if="contact.address || contact.officeAddress">
+          <div class="col-10 mx-auto">
+            <div class="d-flex mb-5 address">
+              <div class="flex-fill text-center mb-4" v-if="contact.address">
+                <span class="text-uppercase oswald-bold">Address:</span>
+                <span class="px-3">{{ contact.address }}</span>
+              </div>
+              <div class="flex-fill text-center mb-4" v-if="contact.officeAddress">
+                <span class="text-uppercase oswald-bold">Office Address:</span>
+                <span class="px-3">{{ contact.officeAddress }}</span>
+              </div>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-lg-10 col-md-10 col-sm-12 col-12 mx-auto mb-5">
-            <form name="enquiryForm" role="form" @submit="saveEnquiryForm">
+            <b-form name="enquiryForm" role="form" @submit="saveEnquiryForm">
               <div class="row">
                 <div class="col-md-6">
-                  <div class="form-group">
-                    <input
+                  <b-form-group>
+                    <b-form-input
                       type="text"
                       class="form-control"
                       name="name"
                       id
                       v-model="formData.name"
                       placeholder="Name"
-                      only-alpha
                     />
-                  </div>
-                  <div class="form-group">
-                    <input
+                    <!-- only-alpha -->
+                  </b-form-group>
+                  <b-form-group>
+                    <b-form-input
                       type="tel"
                       class="form-control"
                       name="mobile"
                       maxlength="10"
                       minlength="8"
                       id
-                      only-digits
-                      v-model="formData.mobile"
+                      v-model.number="formData.mobile"
                       placeholder="Mobile"
                     />
-                  </div>
-                  <div class="form-group">
-                    <input
+                    <!-- only-digits -->
+                  </b-form-group>
+                  <b-form-group>
+                    <b-form-input
                       type="email"
                       class="form-control"
                       name="email"
@@ -116,21 +122,20 @@
                       v-model="formData.email"
                       placeholder="Email ID"
                     />
-                  </div>
+                  </b-form-group>
                 </div>
                 <div class="col-md-6">
-                  <div class>
-                    <textarea
+                  <b-form-group>
+                    <b-form-textarea
                       class="form-control no-resize"
                       name="query"
                       id
                       maxlength="300"
                       rows="8"
                       v-model="formData.query"
-                      v-draggable="false"
                       placeholder="Only upto 300 words"
-                    ></textarea>
-                  </div>
+                    />
+                  </b-form-group>
                 </div>
               </div>
               <div class="row">
@@ -141,17 +146,17 @@
                       v-if="showValidationError"
                     >Fill up all the fields with valid values.</div>
                     <div class="pb-3" v-if="showError">Something went wrong. Resubmit the form.</div>
-                    <button class="btn border-dark" type="submit">Submit</button>
+                    <b-button variant="outline-dark" type="submit">Submit</b-button>
                   </div>
                 </div>
               </div>
-            </form>
+            </b-form>
           </div>
         </div>
       </div>
-      <div class="google-map" v-if="map">
+      <div class="google-map" v-if="contact.mapLink">
         <iframe
-          :src="map"
+          :src="contact.mapLink"
           width="100%"
           height="400px"
           frameborder="0"
@@ -168,6 +173,7 @@
 <script>
 import headerSection from "@/views/Header.vue";
 import footerSection from "@/views/Footer.vue";
+import service from "@/service/apiservice.js";
 export default {
   components: {
     headerSection,
@@ -190,11 +196,50 @@ export default {
         social: ["http://facebook.com"]
       },
       map:
-        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3558.461309665937!2d75.71155415024158!3d26.888850983055047!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396c4b121b024b29%3A0xad9271b72d178aeb!2sMarudhar%20cricket%20club!5e0!3m2!1sen!2sin!4v1575681111745!5m2!1sen!2sin"
+        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3558.461309665937!2d75.71155415024158!3d26.888850983055047!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396c4b121b024b29%3A0xad9271b72d178aeb!2sMarudhar%20cricket%20club!5e0!3m2!1sen!2sin!4v1575681111745!5m2!1sen!2sin",
+      showValidationError: false,
+      showError: false
     };
   },
+  created() {
+    this.getContact();
+  },
   methods: {
-    saveEnquiryForm() {}
+    getContact() {
+      const formData = {};
+      service.searchContact(formData, data => {
+        if (data) {
+          this.contact = data.data[0];
+        } else {
+          this.contact = {};
+        }
+      });
+    },
+    saveEnquiryForm(e) {
+      e.preventDefault();
+      console.log(this.formData);
+      if (
+        this.formData.name &&
+        this.formData.email &&
+        this.formData.mobile &&
+        this.formData.query
+      ) {
+        service.saveEnquiryForm(this.formData, data => {
+          if (data.data) {
+            this.showError = false;
+            this.showValidationError = false;
+            this.formData = {};
+            this.$toasted.success("Enquiry sent Successfully.");
+          } else {
+            this.showError = true;
+            this.showValidationError = false;
+            this.$toasted.error("Retry sending Enquiry.");
+          }
+        });
+      } else {
+        this.showValidationError = true;
+      }
+    }
   }
 };
 </script>
@@ -220,6 +265,9 @@ a.social-link {
   line-height: 1.5;
 }
 @media only screen and (max-width: 768px) {
+  .d-flex.mb-5.address {
+    display: block !important;
+  }
   .text-center.border-left.border-right.border-dark.px-3.mobile-border {
     padding: 1rem 0;
     margin: 1rem 0;
