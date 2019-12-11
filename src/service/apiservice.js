@@ -3,8 +3,8 @@ import Vue from "vue";
 import globalJs from "@/service/global.js";
 // Local
 
-// const adminUrl = "http://api.mtcmarudharcup.com/";
-const adminUrl = "http://localhost:3000/";
+const adminUrl = "http://api.mtcmarudharcup.com/";
+// const adminUrl = "http://localhost:3000/";
 
 export default {
   // uploadUrl: "http://localhost:1330/api/upload/",

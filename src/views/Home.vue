@@ -295,7 +295,6 @@
         </div>
       </section>
     </section>
-
     <footerSection></footerSection>
   </div>
 </template>
