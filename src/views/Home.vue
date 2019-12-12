@@ -159,7 +159,7 @@
         </div>
       </div>
       <!--Team Scrolling-->
-      <section v-if="team.length>0">
+      <!-- <section v-if="team.length>0">
         <div class="pb-5">
           <div class="subhead oswald-bold font-30 mb-5 text-uppercase text-center">
             <span class="px-2 border-bottom border-dark">Teams</span>
@@ -197,7 +197,7 @@
             </div>
           </div>
         </div>
-      </section>
+      </section>-->
 
       <div
         class="gallery-showcase text-black pb-5"
@@ -355,43 +355,43 @@ export default {
           //   el: ".swiper-scrollbar"
           // }
         });
-        var teamSlide = new Swiper(".teams-logo .swiper-container", {
-          slidesPerView: 3,
-          navigation: {
-            nextEl: ".teams-logo  .swiper-button-next",
-            prevEl: ".teams-logo  .swiper-button-prev"
-          },
-          pagination: {
-            el: ".teams-logo .swiper-pagination",
-            clickable: true
-          },
-          slidesPerGroup: 3,
-          // loop: true,
-          // loopFillGroupWithBlank: true,
-          // preloadImages: true,
-          // reverseDirection: false
-          speed: 7000,
-          breakpoints: {
-            320: {
-              slidesPerView: 1,
-              slidesPerGroup: 1,
-              speed: 3000
-            },
-            640: {
-              slidesPerView: 1,
-              slidesPerGroup: 1,
-              speed: 3000
-            },
-            768: {
-              slidesPerView: 2,
-              slidesPerGroup: 2
-            },
-            992: {
-              slidesPerView: 3,
-              slidesPerGroup: 3
-            }
-          }
-        });
+        // var teamSlide = new Swiper(".teams-logo .swiper-container", {
+        //   slidesPerView: 3,
+        //   navigation: {
+        //     nextEl: ".teams-logo  .swiper-button-next",
+        //     prevEl: ".teams-logo  .swiper-button-prev"
+        //   },
+        //   pagination: {
+        //     el: ".teams-logo .swiper-pagination",
+        //     clickable: true
+        //   },
+        //   slidesPerGroup: 3,
+        //   // loop: true,
+        //   // loopFillGroupWithBlank: true,
+        //   // preloadImages: true,
+        //   // reverseDirection: false
+        //   speed: 7000,
+        //   breakpoints: {
+        //     320: {
+        //       slidesPerView: 1,
+        //       slidesPerGroup: 1,
+        //       speed: 3000
+        //     },
+        //     640: {
+        //       slidesPerView: 1,
+        //       slidesPerGroup: 1,
+        //       speed: 3000
+        //     },
+        //     768: {
+        //       slidesPerView: 2,
+        //       slidesPerGroup: 2
+        //     },
+        //     992: {
+        //       slidesPerView: 3,
+        //       slidesPerGroup: 3
+        //     }
+        //   }
+        // });
         var sponsorSlide = new Swiper(".sponsors-logo .swiper-container", {
           // slidesPerView: 3,
           // preloadImages: true,
