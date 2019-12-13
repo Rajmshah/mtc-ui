@@ -59,12 +59,13 @@
                   <div class>
                     <font-awesome-icon :icon="['fas', 'link']" />
                   </div>
+                  <div class="text-uppercase oswald-bold">Links</div>
                   <div class>
                     <div class v-for="link in contact.social" :key="link._id">
                       <a
                         :href="link.link"
                         target="_blank"
-                        class="social-link no-underline text-uppercase oswald-bold"
+                        class="social-link no-underline"
                       >{{link.title}}</a>
                     </div>
                   </div>
