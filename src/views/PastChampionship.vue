@@ -1,15 +1,15 @@
 <template>
   <div>
     <headerSection></headerSection>
-    <!-- <div class="celebrity-holder">
-      <img src="../assets/sponsor.png" alt="Past Championship Page" class="img-responsive" />
-    </div>-->
-    <section>
+    <div class="celebrity-holder">
+      <img src="../assets/past-3.png" alt="Past Championship Page" class="img-responsive" />
+    </div>
+    <!-- <section>
       <div class="text-center opensans-semibold text-uppercase coming-soon">
         <p>Coming</p>
         <p>Soon</p>
       </div>
-    </section>
+    </section>-->
     <footerSection></footerSection>
   </div>
 </template>

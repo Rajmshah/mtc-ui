@@ -57,12 +57,15 @@
               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                 <div class="text-center">
                   <div class>
-                    <font-awesome-icon :icon="['fab', 'facebook-f']" />
+                    <font-awesome-icon :icon="['fas', 'link']" />
                   </div>
-                  <div class="text-uppercase oswald-bold">Facebook Link</div>
                   <div class>
-                    <div class v-for="link in contact.social" :key="link">
-                      <a :href="link" target="_blank" class="social-link no-underline">Click Here</a>
+                    <div class v-for="link in contact.social" :key="link._id">
+                      <a
+                        :href="link.link"
+                        target="_blank"
+                        class="social-link no-underline text-uppercase oswald-bold"
+                      >{{link.title}}</a>
                     </div>
                   </div>
                 </div>

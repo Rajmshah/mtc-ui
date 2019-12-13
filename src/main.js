@@ -113,13 +113,21 @@ import {
   faChevronLeft,
   faTrashAlt,
   faEnvelope,
-  faMobile
+  faMobile,
+  faLink
 } from "@fortawesome/free-solid-svg-icons"; //fas
 
 library.add(faCoffee);
 library.add(faFacebookF, faFacebook, faYoutube, faInstagram); //fab
 library.add(faStar, faCalendar, faCopyright); //far
-library.add(faChevronRight, faChevronLeft, faTrashAlt, faEnvelope, faMobile); //fas
+library.add(
+  faChevronRight,
+  faChevronLeft,
+  faTrashAlt,
+  faEnvelope,
+  faMobile,
+  faLink
+); //fas
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
