@@ -145,7 +145,7 @@
                         <div class="sponsor-card">
                           <div class="player-image" v-if="sponsor.logo">
                             <img
-                              src="../assets/mtc-logo.png"
+                              :src="sponsor.logo | serverimage"
                               :alt="sponsor.name"
                               class="img-responsive"
                             />

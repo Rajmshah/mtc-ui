@@ -44,7 +44,10 @@
             <div>Social Handles</div>
             <div class>
               <span class="mx-4 pointer">
-                <a>
+                <a
+                  href="https://www.facebook.com/Marudharcup/?eid=ARCQSlunft_nRvREDP7W59e2gb9xoGWQCcSQx76ZczTre1ZJe0ZwDz5Nu-ptHoYSoB5c7YCsHJ4PmXVN"
+                  target="_blank"
+                >
                   <!-- <i class="fab fa-facebook"></i> -->
                   <font-awesome-icon :icon="['fab', 'facebook-f']" />
                 </a>
