@@ -39,7 +39,7 @@
                         <div class="sponsor-big-card mx-auto">
                           <div class="player-image" v-if="sponsor.logo">
                             <img
-                              src="../assets/mtc-logo.png"
+                              :src="sponsor.logo | serverimage"
                               :alt="sponsor.name"
                               class="img-responsive"
                             />
@@ -92,7 +92,7 @@
                         <div class="sponsor-medium-card mx-auto">
                           <div class="player-image" v-if="sponsor.logo">
                             <img
-                              src="../assets/mtc-logo.png"
+                              :src="sponsor.logo | serverimage"
                               :alt="sponsor.name"
                               class="img-responsive"
                             />
