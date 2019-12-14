@@ -35,7 +35,6 @@ Vue.filter("serverimage", function(input, width, height, style) {
 
 Vue.filter("youtubethumb", function() {
   return function(input, onlyid, type) {
-    // console.log(type);
     if (input) {
       if (onlyid == false) {
         if (type) {

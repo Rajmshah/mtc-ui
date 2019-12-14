@@ -243,7 +243,6 @@ export default {
       const files = event.target.files;
       if (files && files.length > 0 && files[0].name) {
         var filename = files[0].name;
-        console.log("files", files);
         if (filename.lastIndexOf(".") <= 0) {
           this.$toasted.error("Please Add Valid File!");
         } else if (files[0].size > 1024 * 1024) {

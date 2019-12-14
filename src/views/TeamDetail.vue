@@ -7,7 +7,7 @@
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-auto">
             <div class="card p-5">
               <div class="text-right">
-                <router-link to="/login">
+                <router-link to="/post-registration">
                   <b-button variant="danger">Logout</b-button>
                 </router-link>
               </div>
@@ -350,7 +350,6 @@ export default {
       var files = event.target.files;
       if (files && files.length > 0 && files[0].name) {
         var filename = files[0].name;
-        console.log("files", files);
         if (filename.lastIndexOf(".") <= 0) {
           this.$toasted.error("Please Add Valid File!");
         } else if (files[0].size > 1024 * 1024) {

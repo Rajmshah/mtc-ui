@@ -3,7 +3,8 @@ import Router from "vue-router";
 import Home from "./views/Home.vue";
 import About from "./views/About.vue";
 import Gallery from "./views/Gallery.vue";
-import Login from "./views/Login.vue";
+import Login from "./views/Login-end.vue";
+import OldLogin from "./views/Login.vue";
 import ContactUs from "./views/ContactUs.vue";
 import Sponsor from "./views/Sponsor.vue";
 import Championship from "./views/PastChampionship.vue";
@@ -47,8 +48,13 @@ export default new Router({
     },
     {
       path: "/login",
-      name: "Login",
+      name: "Login-End",
       component: Login
+    },
+    {
+      path: "/post-registration",
+      name: "Login",
+      component: OldLogin
     },
     {
       path: "/team-detail/:token",

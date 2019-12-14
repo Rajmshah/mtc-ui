@@ -221,7 +221,6 @@ export default {
     },
     saveEnquiryForm(e) {
       e.preventDefault();
-      console.log(this.formData);
       if (
         this.formData.name &&
         this.formData.email &&
