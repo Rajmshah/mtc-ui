@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
+import Season9 from "./views/Season9.vue";
 import About from "./views/About.vue";
 import Gallery from "./views/Gallery.vue";
 import Login from "./views/Login-end.vue";
@@ -20,6 +21,11 @@ export default new Router({
       path: "/",
       name: "Home",
       component: Home
+    },
+    {
+      path: "/season-9",
+      name: "Season9",
+      component: Season9
     },
     {
       path: "/about-us",
