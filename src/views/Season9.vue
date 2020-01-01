@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="season-9">
     <headerSection></headerSection>
     <b-embed
       type="iframe"
@@ -23,4 +23,10 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+@media only screen and (max-width: 768px) {
+  .embed-responsive {
+    height: 540px;
+  }
+}
+</style>
