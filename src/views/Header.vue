@@ -4,18 +4,12 @@
       <router-link class="navbar-brand p-0 pointer" to="/">
         <img src="../assets/mtc-logo.png" alt="logo" width="75" />
       </router-link>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+      <!-- <button class="navbar-toggler" type="button" v-b-toggle.collapse>
         <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      </button> -->
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+      <b-collapse id="nav-collapse" is-nav>
         <ul class="navbar-nav mr-auto ml-3">
           <ul class="nav navbar-nav titillium-web-semiBold">
             <li
@@ -51,7 +45,7 @@
             </li>
           </ul>
         </ul>
-      </div>
+      </b-collapse>
     </nav>
   </div>
 </template>
@@ -130,7 +124,7 @@ export default {
       padding: 0;
       cursor: pointer;
       .nav-link {
-        padding: 33px 22px;
+        padding: 33px 17px;
         font-size: 0.93rem;
         color: $white;
         &:hover {
@@ -210,7 +204,7 @@ export default {
     width: 100%;
     margin-left: 0 !important;
   }
-  header .navbar-light .navbar-nav .nav-item .nav-link {
+  .header .navbar-light .navbar-nav .nav-item .nav-link {
     padding: 10px;
     text-align: center;
   }
